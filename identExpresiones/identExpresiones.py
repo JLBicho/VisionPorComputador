@@ -36,8 +36,12 @@ def cargarImagen(datos):
     return imaBW
 
 
+def mostrarImagen(ima, titulo='Imagen'):
+    cv2.imshow(titulo, ima)
+    cv2.waitKey(0)
+
+
 if __name__ == "__main__":
     data = cargarDatabase()
     ima = cargarImagen(data.loc[1])
-    cv2.imshow('preview', ima)
-    cv2.waitKey(0)
+    mostrarImagen(ima)
