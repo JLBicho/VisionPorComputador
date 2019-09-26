@@ -3,3 +3,7 @@
 ################################################################################
 
 /.vs/slnx.sqlite
+/.vs
+/identExpresiones/.vs/identExpresiones/v16
+/identExpresiones/identExpresiones.sln
+/identExpresiones/identExpresiones.pyproj
