@@ -1,0 +1,72 @@
+<html>
+<title> EYERON MEYEDEN. Computer Vision. </title>
+<head>
+	<link rel="stylesheet" type="text/css" href="estilo-general.css" />
+	<link rel="stylesheet" type="text/css" href="estilo_portada.css" />
+	<link href="https://fonts.googleapis.com/css?family=News+Cycle" rel="stylesheet">
+	<h1>
+		<img src="web_imagenes/nombre+logo_blanco.png" height="70" >
+		
+	</h1>
+	<script type="text/javascript">
+		function copiarMail() {
+			document.getElementById("mail").hidden=false;
+			var copyText = document.getElementById("mail");
+			copyText.select();
+			document.execCommand("Copy");
+			document.getElementById("mail").hidden=true;
+			alert("Copiado al portapeles: " + copyText.value);
+		}
+	</script>
+</head>
+
+
+<body>
+	<div id="menulateral">
+		<form action="portada.html">
+			<input type="submit" value="Inicio">
+		</form>
+		<form action="info.html">
+			<input type="submit" value="Sobre nosotros">
+		</form>
+		<form action="WEB-VISION/web_admins.html">
+			<input type="submit" value="Administradores">
+		</form>
+	</div>
+
+	<div id="contenido">
+		<form action="inicio_sesion.php" method="post">
+			<div>
+				<label>DNI:</label>
+				<input type="text" name="usuario" id="usuario">
+			</div>
+			<br>
+			<div>
+				<label>Contrase&ntilde;a:</label>
+				<input type="password" name="contrasena" id="contrasena">
+			</div>
+			<br>
+			<input type="submit" id="enviar" name="enviar" value="Iniciar sesi&oacute;n" onclick="return validar()">
+			<br>
+			<p class="line">
+			&iquest;No est&aacute;s dentro? &Uacute;nete a la secta <a href="web_registrarse.html">aqu&iacute;</a></p>
+		</form>
+	</div>
+	<div id="redes">
+		<a  href="https://twitter.com/reset_etsii" target="_blank">
+			<img border="0" id="icon" src="web_imagenes/logo_twitter.png" width="50" height="50">
+		</a>
+	</br>
+	<a  href="https://www.facebook.com/ResetETSII/" target="_blank">
+		<img border="0" id="icon" src="web_imagenes/logo_fb.png" width="50" height="50">
+	</a>
+</br>
+<a  href="https://www.instagram.com/aereset/" target="_blank">
+	<img border="0" id="icon" src="web_imagenes/logo_instagram.png" width="50" height="50">
+</a>
+</br>
+<img border="0" id="icon" src="web_imagenes/logo_mail.png" width="50" height="50" onclick="copiarMail()">
+<input type="text" value="aereset@gmail.com" id="mail" hidden>
+</div>
+</body>
+</html>

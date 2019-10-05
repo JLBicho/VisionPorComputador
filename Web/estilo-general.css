@@ -1,0 +1,80 @@
+h1{
+	height: 100px;
+	text-align: center;
+	font-size: 56px;
+	margin: 0;
+	padding-left:0%;	
+}
+
+
+body{
+	color: #FFF;
+	font-family: 'News Cycle', sans-serif;
+	font-size: 20px;
+	background-image: url("web_imagenes/web-bg.png");
+	
+	background-size: cover;
+	background-position: 0px 0px;
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+}
+
+
+#menulateral input{
+	color: #FFF;
+	text-decoration: none;
+	font-size: 20px;
+	border: none;
+	background-color: transparent;
+	font-family: 'News Cycle', sans-serif;
+}
+
+#menulateral input:hover{
+	color: #FFF;
+	text-decoration: none;
+}
+
+#menulateral{
+	float: left;
+	width: 15%;
+	min-width:200px;
+	height: 70%;
+	border-top: 1px solid #FFF;
+	border-right: 1px solid #FFF;
+	border-bottom: 1px solid #FFF;
+	position: fixed; top: 20%; left:2%;
+}
+
+#saludo{
+	position: fixed; top: 10%; left:2%;
+
+}
+
+#saludoport{
+	position: fixed; top: 10%; left:2%;
+}
+
+#redes{
+	cursor:pointer;
+	float:right;
+	position: fixed; top:35%; right:2%;
+}
+
+
+#icon{
+	opacity: 0.7;
+}
+
+#icon:hover{
+	transform: scale(1.2);
+	opacity: 1;
+}
+
+#enviar{
+
+	font-family: 'News Cycle', sans-serif;
+}
+
+#enviar:hover{
+	color: #FFF;
+}

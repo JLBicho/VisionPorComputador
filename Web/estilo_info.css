@@ -1,0 +1,22 @@
+#contenido{
+	text-align: left;
+	margin-left: 20%;
+	margin-right: 10%;
+	margin-top: 2%;
+	font-size: 20;
+	padding-left: 150px;
+	padding-right: 200px;
+}
+
+.texto{
+text-align: justify;
+}
+
+#foto{
+width: 100%;
+height: auto;
+}
+
+a{
+color:#e80;
+}

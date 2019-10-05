@@ -1,0 +1,18 @@
+
+
+#mensaje{
+	width: 100%;
+	height: 100%;
+	text-align:center;
+	padding-bottom: 20%;
+
+}
+
+#boton{
+	color: #e80;
+	text-decoration: none;
+	font-size: 20px;
+	border: none;
+	font-family: 'News Cycle', sans-serif;
+}
+
