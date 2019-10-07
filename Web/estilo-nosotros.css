@@ -1,13 +1,16 @@
 #contenido{
 	text-align: left;
-	margin-left: 23%;
+	margin-left: 10%;
+	margin-right: 30%;
 	margin-top: 6%;
 	font-size: 20;
 	padding-left: 200px;
 	padding-right: 150px;
 	min-width:500px;
 	font-family: 'Roboto', 'sans-serif';
+	
 }
+
 
 #role{
 	font-size: 30;
@@ -18,13 +21,6 @@
 	font-size:20;
 }
 
-#enviar{
-	margin-left: 15%;
-	margin-top: 2%;
-	font-family: 'News Cycle', sans-serif;
-	font-size:18px;
-
-}
 
 .title{
 margin-left:7%

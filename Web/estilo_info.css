@@ -1,12 +1,15 @@
 #contenido{
 	text-align: left;
-	margin-left: 20%;
-	margin-right: 10%;
-	margin-top: 2%;
+	margin-left: 10%;
+	margin-right: 30%;
+	margin-top: 6%;
 	font-size: 20;
-	padding-left: 150px;
-	padding-right: 200px;
+	padding-left: 200px;
+	padding-right: 150px;
+	min-width:500px;
+	font-family: 'Roboto', 'sans-serif';
 }
+
 
 .texto{
 text-align: justify;

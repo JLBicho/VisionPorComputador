@@ -9,7 +9,7 @@ h1{
 
 body{
 	color: #FFF;
-	font-family: 'News Cycle', sans-serif;
+	font-family: 'Roboto', 'sans-serif';
 	font-size: 20px;
 	background-image: url("web_imagenes/web-bg.png");
 	
@@ -21,12 +21,13 @@ body{
 
 
 #menulateral input{
+	padding-top: 15px;
 	color: #FFF;
 	text-decoration: none;
 	font-size: 20px;
 	border: none;
 	background-color: transparent;
-	font-family: 'News Cycle', sans-serif;
+	font-family: 'Rubik', 'sans-serif';
 }
 
 #menulateral input:hover{
@@ -75,7 +76,7 @@ body{
 
 #enviar{
 
-	font-family: 'News Cycle', sans-serif;
+	font-family: 'Roboto', 'sans-serif';
 }
 
 #enviar:hover{
