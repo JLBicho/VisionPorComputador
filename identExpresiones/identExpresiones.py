@@ -1,6 +1,6 @@
 import pandas as pd
 import cv2
-import numpy as np
+# import numpy as np
 import os
 from zipfile import ZipFile
 
@@ -41,7 +41,45 @@ def mostrarImagen(ima, titulo='Imagen'):
     cv2.waitKey(0)
 
 
+# Devuelve los puntos que caracterizan la imagen. Debe entrar la imagen
+# frontalde la cara, un detector en boundig box de la cara y el marcador
+# del archivo "lbfmodel.yaml"
+def marcarCara(imagen, detector, marcador):
+    caras = detector.detectMultiScale(imagen)
+    retval, puntos = marcador.fit(imagen, caras)
+    return puntos
+
+
+# Devuelve una copia la imagen pasada con los puntos descritos en el
+# primer canal en de la variable puntos
+def dibujarPuntos(imagen, puntos):
+    ima = imagen.copy()
+    cv2.face.drawFacemarks(ima, puntos[0], 255)
+    return ima
+
+
 if __name__ == "__main__":
     data = cargarDatabase()
     ima = cargarImagen(data.loc[1])
+
+    # Contiene la información para detectar caras en una imagen
+    detectorCara = cv2.CascadeClassifier(cv2.data.haarcascades
+                                         + "haarcascade_"
+                                         + "frontalface_default.xml")
+
+    marcador = cv2.face.createFacemarkLBF()
+    marcador.loadModel("Modelos/lbfmodel.yaml")
+
+    puntos = marcarCara(ima, detectorCara, marcador)
+    ima2 = dibujarPuntos(ima, puntos)
+    mostrarImagen(ima2)
+
+    """
     mostrarImagen(ima)
+    clasifOjos = cv2.CascadeClassifier(cv2.data.haarcascades
+                                       + "haarcascade_eye.xml")
+    ojos = clasifOjos.detectMultiScale(ima)
+    for ojo in ojos:
+        ima2 = cv2.rectangle(ima, (ojo[0], ojo[1]),
+                             (ojo[0] + ojo[2], ojo[1] + ojo[3]), 0)
+    """
