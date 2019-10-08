@@ -10,32 +10,11 @@
 	font-family: 'Roboto', 'sans-serif';
 }
 
-#contenido label{
-	float: left;
-	width: 20%;
+#titulo{
+	font-family: 'Rubik', 'sans-serif';
 }
 
-#contenido div input{
-	float: left;
-	width: 20%;
-	margin-top: 1%;
-}
 
-#contenido div input:focus,#contenido div input:hover{
-	background-color: #FFE4B5;
-}
-
-#contenido a{
-	color: #e80;
-}
-
-#enviar{
-	margin-left: 15%;
-	margin-top: 2%;
-	font-family: 'Roboto', 'sans-serif';
-	font-size:18px;
-
-}
 
 .title{
 margin-left:7%

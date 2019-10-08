@@ -40,7 +40,7 @@ body{
 #menulateral{
 	
 	float: left;
-	width: 15%;
+	width: 19%;
 	min-width:200px;
 	height: 70%;
 	border-top: 1px solid #FFF;
@@ -49,14 +49,7 @@ body{
 	position: fixed; top: 20%; left:2%;
 }
 
-#saludo{
-	position: fixed; top: 10%; left:2%;
 
-}
-
-#saludoport{
-	position: fixed; top: 10%; left:2%;
-}
 
 #redes{
 	cursor:pointer;
@@ -74,23 +67,17 @@ body{
 	opacity: 1;
 }
 
-#enviar{
-
-	font-family: 'Roboto', 'sans-serif';
-}
-
-#enviar:hover{
-	color: #FFF;
-}
 
 #logo{
 	opacity: 1;
-	padding-top: 15px;
+	padding-top: 17px;
 	padding-left: 15px;
+	height: 62;
+	position: fixed; top: 3%;
 }
 
 #logo:hover{
 	transform: scale(1.1);
-cursor:pointer;	
+	cursor:pointer;	
 }
 	
