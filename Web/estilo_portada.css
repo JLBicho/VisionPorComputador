@@ -3,6 +3,17 @@
 	font-family: 'Rubik', 'sans-serif';
 }
 
+#app-iconos{
+	text-align: center;
+	padding-top: 25;
+
+}
+
+#app-titulos{
+	font-size: 20;
+	text-align: center;
+
+}
 
 
 .title{

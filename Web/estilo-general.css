@@ -23,7 +23,7 @@ body{
 	margin-left: 10%;
 	margin-right: 30%;
 	margin-top: 6%;
-	font-size: 15;
+	font-size: 18;
 	padding-left: 200px;
 	padding-right: 150px;
 	min-width:500px;
@@ -60,7 +60,9 @@ body{
 	position: fixed; top: 20%; left:2%;
 }
 
-
+#menu-icono:hover{
+	color: #FF0;
+}
 
 #redes{
 	cursor:pointer;
