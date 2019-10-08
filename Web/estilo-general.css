@@ -10,13 +10,24 @@ h1{
 body{
 	color: #FFF;
 	font-family: 'Roboto', 'sans-serif';
-	font-size: 20px;
 	background-image: url("web_imagenes/web-bg.png");
 	
 	background-size: cover;
 	background-position: 0px 0px;
 	background-repeat: no-repeat;
 	background-attachment: fixed;
+}
+
+#contenido{
+	text-align: left;
+	margin-left: 10%;
+	margin-right: 30%;
+	margin-top: 6%;
+	font-size: 15;
+	padding-left: 200px;
+	padding-right: 150px;
+	min-width:500px;
+	font-family: 'Roboto', 'sans-serif';
 }
 
 
@@ -54,7 +65,7 @@ body{
 #redes{
 	cursor:pointer;
 	float:right;
-	position: fixed; top:35%; right:2%;
+	position: fixed; top:30%; right:2%;
 }
 
 
