@@ -4,6 +4,7 @@ import cv2
 import os
 from zipfile import ZipFile
 import SeleccionarPuntos as sp
+from detectarExpresiones import detectarExpresiones
 
 
 # Extraer imágenes de la Database si no se ha hecho antes
@@ -76,6 +77,8 @@ if __name__ == "__main__":
     ima2 = dibujarPuntos(ima, puntos)
     mostrarImagen(ima2)
     mostrarImagen(dibujarPuntos(ima, sp.selPuntosLabios((puntos))))
+    prueba = detectarExpresiones(detectorCara, marcador, ima)
+    prueba.calcularPuntosNeutra()
 
     """
     mostrarImagen(ima)
