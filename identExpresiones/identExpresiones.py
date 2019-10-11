@@ -89,3 +89,4 @@ if __name__ == "__main__":
         ima2 = cv2.rectangle(ima, (ojo[0], ojo[1]),
                              (ojo[0] + ojo[2], ojo[1] + ojo[3]), 0)
     """
+    #prueba para explicar a elena
