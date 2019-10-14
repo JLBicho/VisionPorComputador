@@ -79,6 +79,7 @@ if __name__ == "__main__":
     mostrarImagen(dibujarPuntos(ima, sp.selPuntosLabios((puntos))))
     prueba = detectarExpresiones(detectorCara, marcador, ima)
     prueba.calcularPuntosNeutra()
+    prueba.puntosBocaNeutra
 
     """
     mostrarImagen(ima)
@@ -89,4 +90,3 @@ if __name__ == "__main__":
         ima2 = cv2.rectangle(ima, (ojo[0], ojo[1]),
                              (ojo[0] + ojo[2], ojo[1] + ojo[3]), 0)
     """
-    #prueba para explicar a elena
