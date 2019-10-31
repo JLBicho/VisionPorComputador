@@ -21,7 +21,7 @@ class detectarExpresiones():
 # Modifica la imagen neutra y recalcula los puntos característicos
     def setImagenNeutra(self, imagen):
         self.imagenNeutra = imagen
-        self.__calcularPuntos()
+        self.__calcularPuntosNeutra()
 
 # Crea vectores con los puntos característicos de la imágen neutra
     def __calcularPuntosNeutra(self):
