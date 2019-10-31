@@ -101,10 +101,45 @@ class detectarExpresiones():
     def __normalizarDist(self):
         pass
 
-# TODO
-# Genera el vector con los AUs que se cumplen con un valor de 0 a 1 en cada uno
+# Genera el vector con los AUs que se cumplen con un valor de 0 a 1 para cada
+# AU calculado y -1 en los AU no calculados
     def __comprobarAUs(self):
-        self.actionUnits = np.zeros(46)
+        self.actionUnits = np.zeros(46) - 1
+        self.actionUnits[1] = self.__AU1()
+        self.actionUnits[2] = self.__AU2()
+        self.actionUnits[4] = self.__AU4()
+        self.actionUnits[6] = self.__AU6()
+        self.actionUnits[10] = self.__AU10()
+        self.actionUnits[12] = self.__AU12()
+        self.actionUnits[14] = self.__AU14()
 
-# TODO: Definir funciones para cada action unit que devuelva un valor de 0 a 1
-# en funcion del grado de cumplimiento de las condiciones impuestas
+# TODO: Completar funciones para cada action unit que devuelva un valor de
+#       0 a 1 en funcion del grado de cumplimiento de las condiciones impuestas
+    def __AU1(self):
+        return 0
+
+    def __AU2(self):
+        return 0
+
+    def __AU4(self):
+        return 0
+
+    def __AU6(self):
+        return 0
+
+    def __AU10(self):
+        return 0
+
+    def __AU12(self):
+        return 0
+
+    def __AU14(self):
+        return 0
+
+# TODO: Introducir parámetros en la ponderación modificables para ajustar
+#       el modelo posteriormente.
+# Devuelve el valor de felicidad de 0 a 1 ponderado a
+# partir del vector actionUnits
+    def comprobarFelicidad(self):
+        self.felicidad = 0
+        return self.felicidad
