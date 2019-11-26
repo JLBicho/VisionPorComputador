@@ -78,8 +78,9 @@ if __name__ == "__main__":
     mostrarImagen(ima2)
     mostrarImagen(dibujarPuntos(ima, sp.selPuntosLabios((puntos))))
     prueba = detectarExpresiones(detectorCara, marcador, ima)
-    prueba.calcularPuntosNeutra()
     prueba.puntosBocaNeutra
+    print(prueba.puntosCejaIzqNeutra)
+    print(prueba.puntosCejaDerNeutra)
 
     """
     mostrarImagen(ima)

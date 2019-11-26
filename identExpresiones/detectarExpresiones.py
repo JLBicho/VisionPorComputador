@@ -1,4 +1,5 @@
 import numpy as np
+import math
 
 
 class detectarExpresiones():
@@ -81,7 +82,13 @@ class detectarExpresiones():
         self.puntosNML = np.zeros((1, 3, 2), dtype='float32')
         self.puntosNMM = np.zeros((1, 2, 2), dtype='float32')
 
-# TODO: Para calcular distancia entre puntos usad librerías
+#Para calcular las distancias entre dos puntos				
+    def dist(self,x1,x2):
+        distancia = math.sqrt((x2[0:1,0] - x1[0:1,0])**2 + 
+                              (x2[0:1,1] - x1[0:1,1])**2)  
+        return distancia 		
+		
+# TODO: Para calcular distancia entre puntos usad librerías 
 # Calcula las distancias características de la imágen analizable
     def __calcularDistancias(self):
         # Completar con el resto de distancias necesarias
@@ -93,13 +100,21 @@ class detectarExpresiones():
 # TODO
 # Calcula las distancias características de la imágen neutra
     def __calcularDistanciasNeutra(self):
-        self.distNER1_NEL1 = None
+        self.distNER1_NEL1 = dist(self.puntosOjoDerNeutra[0:1,3,0:2],  
+                                  self.puntosOjoIzqNeutra[0:1,3,0:2])
 
 # TODO
 # Escala la distancia entre ER1 y EL1 a 100 para ambas imagenes y el
 # resto de distancias en la misma escala
+#Añadir aqui todas las demas distancias para normalizarlas
+#Por ultimo, le damos a ER1_EL1 su nuevo valor de 100
     def __normalizarDist(self):
-        pass
+        #Imagen
+        self.distER2_ER1 = self.distER2_ER1 * 100 / self.distER1_EL1
+        self.distER1_EL1 = 100
+        #Imagen Neutra
+        self.distER2_ER1 = self.distER2_ER1 * 100 / self.distNER1_NEL1
+        self.distNER1_NEL1 = 100
 
 # Genera el vector con los AUs que se cumplen con un valor de 0 a 1 para cada
 # AU calculado y -1 en los AU no calculados
