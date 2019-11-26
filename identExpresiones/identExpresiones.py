@@ -63,7 +63,7 @@ def dibujarPuntos(imagen, puntos):
 
 if __name__ == "__main__":
     data = cargarDatabase()
-    ima = cargarImagen(data.loc[20])
+    ima = cargarImagen(data.loc[30])
 
     # Contiene la información para detectar caras en una imagen
     detectorCara = cv2.CascadeClassifier(cv2.data.haarcascades
@@ -76,11 +76,13 @@ if __name__ == "__main__":
     puntos = marcarCara(ima, detectorCara, marcador)
     ima2 = dibujarPuntos(ima, puntos)
     mostrarImagen(ima2)
+    mostrarImagen(dibujarPuntos(ima, sp.selPuntosBoca((puntos))))
     mostrarImagen(dibujarPuntos(ima, sp.selPuntosLabios((puntos))))
     prueba = detectarExpresiones(detectorCara, marcador, ima)
     prueba.puntosBocaNeutra
-    print(prueba.puntosCejaDerNeutra)
-    print(prueba.puntosCejaIzqNeutra)
+    prueba.puntosLabiosNeutra
+    print(prueba.puntosBocaNeutra)
+    print(prueba.puntosLabiosNeutra)
 
     """
     mostrarImagen(ima)

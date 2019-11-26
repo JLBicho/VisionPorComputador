@@ -62,12 +62,34 @@ class detectarExpresiones():
     def __puntosAUs(self):
         # Calculadlos a partir de la variable self.puntos
         self.puntosBR = np.zeros((1, 3, 2), dtype='float32')
+        self.puntosBR[0:1,0,0:2] = self.puntosCejaDer[0:1,0,0:2]
+        self.puntosBR[0:1,1,0:2] = self.puntosCejaDer[0:1,2,0:2]
+        self.puntosBR[0:1,2,0:2] = self.puntosCejaDer[0:1,4,0:2]
         self.puntosBL = np.zeros((1, 3, 2), dtype='float32')
+        self.puntosBL[0:1,0,0:2] = self.puntosCejaIzq[0:1,4,0:2]
+        self.puntosBL[0:1,1,0:2] = self.puntosCejaIzq[0:1,2,0:2]
+        self.puntosBL[0:1,2,0:2] = self.puntosCejaIzq[0:1,0,0:2]
         self.puntosER = np.zeros((1, 4, 2), dtype='float32')
+        self.puntosER[0:1,0,0:2] = self.puntosOjoDer[0:1,3,0:2]
+        self.puntosER[0:1,1,0:2] = self.puntosOjoDer[0:1,4,0:2]
+        self.puntosER[0:1,2,0:2] = self.puntosOjoDer[0:1,2,0:2]
+        self.puntosER[0:1,3,0:2] = self.puntosOjoDer[0:1,0,0:2]
         self.puntosEL = np.zeros((1, 4, 2), dtype='float32')
+        self.puntosEL[0:1,0,0:2] = self.puntosOjoIzq[0:1,0,0:2]
+        self.puntosEL[0:1,1,0:2] = self.puntosOjoIzq[0:1,5,0:2]
+        self.puntosEL[0:1,2,0:2] = self.puntosOjoIzq[0:1,1,0:2]
+        self.puntosEL[0:1,3,0:2] = self.puntosOjoIzq[0:1,3,0:2]
         self.puntosMR = np.zeros((1, 3, 2), dtype='float32')
+        self.puntosMR[0:1,0,0:2] = self.puntosLabios[0:1,0,0:2]
+        self.puntosMR[0:1,1,0:2] = self.puntosLabios[0:1,10,0:2]
+        self.puntosMR[0:1,2,0:2] = self.puntosLabios[0:1,2,0:2]
         self.puntosML = np.zeros((1, 3, 2), dtype='float32')
+        self.puntosML[0:1,0,0:2] = self.puntosLabios[0:1,6,0:2]
+        self.puntosML[0:1,1,0:2] = self.puntosLabios[0:1,8,0:2]
+        self.puntosML[0:1,2,0:2] = self.puntosLabios[0:1,4,0:2]
         self.puntosMM = np.zeros((1, 2, 2), dtype='float32')
+        self.puntosMM[0:1,0,0:2] = self.puntosBoca[0:1,6,0:2]
+        self.puntosMM[0:1,1,0:2] = self.puntosBoca[0:1,2,0:2]
         self.__calcularDistancias()
 
 # TODO
@@ -75,12 +97,35 @@ class detectarExpresiones():
 # el archivo de drive para la imagen neutra
     def __puntosAUsNeutra(self):
         self.puntosNBR = np.zeros((1, 3, 2), dtype='float32')
+        self.puntosNBR[0:1,0,0:2] = self.puntosCejaDerNeutra[0:1,0,0:2]
+        self.puntosNBR[0:1,1,0:2] = self.puntosCejaDerNeutra[0:1,2,0:2]
+        self.puntosNBR[0:1,2,0:2] = self.puntosCejaDerNeutra[0:1,4,0:2]
         self.puntosNBL = np.zeros((1, 3, 2), dtype='float32')
+        self.puntosNBL[0:1,0,0:2] = self.puntosCejaIzqNeutra[0:1,4,0:2]
+        self.puntosNBL[0:1,1,0:2] = self.puntosCejaIzqNeutra[0:1,2,0:2]
+        self.puntosNBL[0:1,2,0:2] = self.puntosCejaIzqNeutra[0:1,0,0:2]
         self.puntosNER = np.zeros((1, 4, 2), dtype='float32')
+        self.puntosNER[0:1,0,0:2] = self.puntosOjoDerNeutra[0:1,3,0:2]
+        self.puntosNER[0:1,1,0:2] = self.puntosOjoDerNeutra[0:1,4,0:2]
+        self.puntosNER[0:1,2,0:2] = self.puntosOjoDerNeutra[0:1,2,0:2]
+        self.puntosNER[0:1,3,0:2] = self.puntosOjoDerNeutra[0:1,0,0:2]
         self.puntosNEL = np.zeros((1, 4, 2), dtype='float32')
+        self.puntosNEL[0:1,0,0:2] = self.puntosOjoIzqNeutra[0:1,0,0:2]
+        self.puntosNEL[0:1,1,0:2] = self.puntosOjoIzqNeutra[0:1,5,0:2]
+        self.puntosNEL[0:1,2,0:2] = self.puntosOjoIzqNeutra[0:1,1,0:2]
+        self.puntosNEL[0:1,3,0:2] = self.puntosOjoIzqNeutra[0:1,3,0:2]
         self.puntosNMR = np.zeros((1, 3, 2), dtype='float32')
+        self.puntosNMR[0:1,0,0:2] = self.puntosLabiosNeutra[0:1,0,0:2]
+        self.puntosNMR[0:1,1,0:2] = self.puntosLabiosNeutra[0:1,10,0:2]
+        self.puntosNMR[0:1,2,0:2] = self.puntosLabiosNeutra[0:1,2,0:2]
         self.puntosNML = np.zeros((1, 3, 2), dtype='float32')
+        self.puntosNML[0:1,0,0:2] = self.puntosLabiosNeutra[0:1,6,0:2]
+        self.puntosNML[0:1,1,0:2] = self.puntosLabiosNeutra[0:1,8,0:2]
+        self.puntosNML[0:1,2,0:2] = self.puntosLabiosNeutra[0:1,4,0:2]
         self.puntosNMM = np.zeros((1, 2, 2), dtype='float32')
+        self.puntosNMM[0:1,0,0:2] = self.puntosBocaNeutra[0:1,6,0:2]
+        self.puntosNMM[0:1,1,0:2] = self.puntosBocaNeutra[0:1,2,0:2]
+        self.__calcularDistanciasNeutra()
 
 #Para calcular las distancias entre dos puntos				
     def dist(self,x1,x2):
@@ -153,8 +198,16 @@ class detectarExpresiones():
 
 # TODO: Introducir parámetros en la ponderación modificables para ajustar
 #       el modelo posteriormente.
-# Devuelve el valor de felicidad de 0 a 1 ponderado a
-# partir del vector actionUnits
+# Devuelve el valor de felicidad de 0 a 1 ponderado (mediante 
+#paramFelicidad a partir del vector actionUnits 
     def comprobarFelicidad(self):
-        self.felicidad = 0
+        self.paramFelicidad = np.zeros(46) - 1
+        self.paramFelicidad[1] = 0
+        self.paramFelicidad[2] = 0
+        self.paramFelicidad[4] = 0
+        self.paramFelicidad[6] = 0
+        self.paramFelicidad[10] = 0
+        self.paramFelicidad[12] = 0
+        self.paramFelicidad[14] = 0
+        self.felicidad = np.dot(self.actionUnits,self.paramFelicidad)
         return self.felicidad
