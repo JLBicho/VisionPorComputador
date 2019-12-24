@@ -133,6 +133,11 @@ class detectarExpresiones():
                               + (x2[0:1, 1] - x1[0:1, 1])**2)
         return distancia
 
+# Para calcular las distancias VERTICALES entre dos puntos. x1 (arriba) - x2 (abajo)
+    def distVertical (self, x1, x2):
+        distancia = x1[0:1, 1] - x2[0:1, 1]
+        return distancia
+
 # TODO: Para calcular distancia entre puntos usad librerías
 # Calcula las distancias características de la imágen analizable
     def __calcularDistancias(self):
@@ -141,12 +146,32 @@ class detectarExpresiones():
         # dist + Izquierda_Derecha (parte derecha de la cara_parte izquierda)
         # si estan en el mismo lado arriba_abajo
         self.distER1_EL1 = None
+        self.distvBR1_ER1 = self.distVertical(self.puntosBR[0:1, 0, 0:2], self.puntosER[0:1, 0, 0:2])
+        self.distvBL1_EL1 = self.distVertical(self.puntosBL[0:1, 0, 0:2], self.puntosEL[0:1, 0, 0:2])
+        self.distBR2_ER1 = self.dist(self.puntosBR[0:1, 1, 0:2], self.puntosER[0:1, 0, 0:2])
+        self.distBL2_EL1 = self.dist(self.puntosBL[0:1, 1, 0:2], self.puntosEL[0:1, 0, 0:2])
+        self.distBR3_ER1 = self.dist(self.puntosBR[0:1, 2, 0:2], self.puntosER[0:1, 0, 0:2])
+        self.distBL3_EL1 = self.dist(self.puntosBL[0:1, 2, 0:2], self.puntosEL[0:1, 0, 0:2])
+        self.distER2_ER3 = self.dist(self.puntosER[0:1, 1, 0:2], self.puntosER[0:1, 2, 0:2])
+        self.distEL2_EL3 = self.dist(self.puntosEL[0:1, 1, 0:2], self.puntosEL[0:1, 2, 0:2])
+        self.distvER1_ER3 = self.distVertical(self.puntosER[0:1, 0, 0:2], self.puntosER[0:1, 2, 0:2])
+        self.distvEL1_EL3 = self.distVertical(self.puntosEL[0:1, 0, 0:2], self.puntosEL[0:1, 2, 0:2])
 
 # TODO
 # Calcula las distancias características de la imágen neutra
     def __calcularDistanciasNeutra(self):
         self.distNER1_NEL1 = self.dist(self.puntosOjoDerNeutra[0:1, 3, 0:2],
                                        self.puntosOjoIzqNeutra[0:1, 3, 0:2])
+        self.distvNBR1_NER1 = self.distVertical(self.puntosNBR[0:1, 0, 0:2], self.puntosNER[0:1, 0, 0:2])
+        self.distvNBL1_NEL1 = self.distVertical(self.puntosNBL[0:1, 0, 0:2], self.puntosNEL[0:1, 0, 0:2])
+        self.distNBR2_NER1 = self.dist(self.puntosNBR[0:1, 1, 0:2], self.puntosNER[0:1, 0, 0:2])
+        self.distNBL2_NEL1 = self.dist(self.puntosNBL[0:1, 1, 0:2], self.puntosNEL[0:1, 0, 0:2])
+        self.distNBR3_NER1 = self.dist(self.puntosNBR[0:1, 2, 0:2], self.puntosNER[0:1, 0, 0:2])
+        self.distNBL3_NEL1 = self.dist(self.puntosNBL[0:1, 2, 0:2], self.puntosNEL[0:1, 0, 0:2])
+        self.distNER2_NER3 = self.dist(self.puntosNER[0:1, 1, 0:2], self.puntosNER[0:1, 2, 0:2])
+        self.distNEL2_NEL3 = self.dist(self.puntosNEL[0:1, 1, 0:2], self.puntosNEL[0:1, 2, 0:2])
+        self.distvNER1_NER3 = self.distVertical(self.puntosNER[0:1, 0, 0:2], self.puntosNER[0:1, 2, 0:2])
+        self.distvNEL1_NEL3 = self.distVertical(self.puntosNEL[0:1, 0, 0:2], self.puntosNEL[0:1, 2, 0:2])
 
 # TODO
 # Escala la distancia entre ER1 y EL1 a 100 para ambas imagenes y el
@@ -156,9 +181,29 @@ class detectarExpresiones():
     def __normalizarDist(self):
         # Imagen
         self.distER2_ER1 = self.distER2_ER1 * 100 / self.distER1_EL1
+        self.distvBR1_ER1 = self.distvBR1_ER1 * 100 / self.distER1_EL1
+        self.distvBL1_EL1 = self.distvBL1_EL1 * 100 / self.distER1_EL1
+        self.distBR2_ER1 = self.distBR2_ER1 * 100 / self.distER1_EL1
+        self.distBL2_EL1 = self.distBL2_EL1 * 100 / self.distER1_EL1
+        self.distBR3_ER1 = self.distBR3_ER1 * 100 / self.distER1_EL1
+        self.distBL3_EL1 = self.distBL3_EL1 * 100 / self.distER1_EL1
+        self.distER2_ER3 = self.distER2_ER3 * 100 / self.distER1_EL1
+        self.distEL2_EL3 = self.distEL2_EL3 * 100 / self.distER1_EL1
+        self.distvER1_ER3 = self.distvER1_ER3 * 100 / self.distER1_EL1
+        self.distvEL1_EL3 = self.distvEL1_EL3 * 100 / self.distER1_EL1
         self.distER1_EL1 = 100
         # Imagen Neutra
-        self.distER2_ER1 = self.distER2_ER1 * 100 / self.distNER1_NEL1
+        self.distNER2_NER1 = self.distNER2_NER1 * 100 / self.distNER1_NEL1
+        self.distvNBR1_NER1 = self.distvNBR1_NER1 * 100 / self.distNER1_NEL1
+        self.distvNBL1_NEL1 = self.distvNBL1_NEL1 * 100 / self.distNER1_NEL1
+        self.distNBR2_NER1 = self.distNBR2_NER1 * 100 / self.distNER1_NEL1
+        self.distNBL2_NEL1 = self.distNBL2_NEL1 * 100 / self.distNER1_NEL1
+        self.distNBR3_NER1 = self.distNBR3_NER1 * 100 / self.distNER1_NEL1
+        self.distNBL3_NEL1 = self.distNBL3_NEL1 * 100 / self.distNER1_NEL1
+        self.distNER2_NER3 = self.distNER2_NER3 * 100 / self.distNER1_NEL1
+        self.distNEL2_NEL3 = self.distNEL2_NEL3 * 100 / self.distNER1_NEL1
+        self.distvNER1_NER3 = self.distvNER1_NER3 * 100 / self.distNER1_NEL1
+        self.distvNEL1_NEL3 = self.distvNEL1_NEL3 * 100 / self.distNER1_NEL1
         self.distNER1_NEL1 = 100
 
 # Genera el vector con los AUs que se cumplen con un valor de 0 a 1 para cada
@@ -182,10 +227,47 @@ class detectarExpresiones():
         return 0
 
     def __AU4(self):
-        return 0
+        compliance = None
+        thr_B1 = None
+        thr_B2 = None
+        thr_B3 = None
+        #Right
+        if self.distvBR1_ER1 - self.distvNBR1_NER1 > 0,2 * thr_B1:
+            compBR1 = (self.distvBR1_ER1 - self.distvNBR1_NER1) / thr_B1
+        if self.distBR2_ER1 - self.distNBR2_NER1 > 0,2 * thr_B2:
+            compBR2 = (self.distBR2_ER1 - self.distNBR2_NER1) / thr_B2
+        if self.distBR3_ER1 - self.distNBR3_NER1 > 0,2 * thr_B3:
+            compBR3 = (self.distBR3_ER1 - self.distNBR3_NER1) / thr_B3
+        complianceR = 0,4 * compBR1 + 0,3 * compBR2 + 0,3 * compBR3
+        #Left
+        if self.distvBL1_EL1 - self.distvNBL1_NEL1 > 0,2 * thr_B1:
+            compBR1 = (self.distvBL1_EL1 - self.distvNBL1_NEL1) / thr_B1
+        if self.distBL2_EL1 - self.distNBL2_NEL1 > 0,2 * thr_B2:
+            compBR2 = (self.distBL2_EL1 - self.distNBL2_NEL1) / thr_B2
+        if self.distBL3_EL1 - self.distNBL3_NEL1 > 0,2 * thr_B3:
+            compBR3 = (self.distBL3_EL1 - self.distNBL3_NEL1) / thr_B3
+        complianceL = 0,4 * compBL1 + 0,3 * compBL2 + 0,3 * compBL3
+        compliance = 0,5 * complianceR + 0,5 * complianceL
+        return compliance
 
     def __AU6(self):
-        return 0
+        compliance = None
+        thr_E3 = None
+        thr_E2_E3 = None
+        #Right
+        if self.distNER2_NER3 - self.distER2_ER3 > 0,2 * thr_E2_E3:
+            compER2_ER3 = (self.distNER2_NER3 - self.distER2_ER3) / thr_E2_E3
+        if self.distvNER1_NER3 - self.distvER1_ER3 > 0,2 * thr_E3:
+            compER1_ER3 = (self.distvNER1_NER3 - self.distvER1_ER3)  / thr_E3
+        complianceR = 0,7 * compER2_ER3 + 0,3 * compER1_ER3
+        #Left
+        if self.distNEL2_NEL3 - self.distEL2_EL3 > 0,2 * thr_E2_E3:
+            compEL2_EL3 = (self.distNEL2_NEL3 - self.distEL2_EL3) / thr_E2_E3
+        if self.distvNEL1_NEL3 - self.distvEL1_EL3 > 0,2 * thr_E3:
+            compEL1_EL3 = (self.distvNEL1_NEL3 - self.distvEL1_EL3)  / thr_E3
+        complianceL = 0,7 * compEL2_EL3 + 0,3 * compEL1_EL3
+        compliance = 0,5 * complianceR + 0,5 * complianceL
+        return compliance
 
     def __AU10(self):
         return 0
