@@ -149,7 +149,9 @@ class detectarExpresiones():
         self.distER1_EL1 = self.__dist(self.puntosER[0:1, 0, 0:2], self.puntosEL[0:1, 0, 0:2])
 
         #AU1 (estan en AU4)
-
+        self.distvBR3_ER1 = self.__distVertical(self.puntosBR[0:1, 2, 0:2], self.puntosER[0:1, 0, 0:2]) 
+        self.distvBL3_EL1 = self.__distVertical(self.puntosBL[0:1, 2, 0:2], self.puntosEL[0:1, 0, 0:2]) 
+        
         #AU2
         self.distvBR1_ER4 = self.__distVertical(self.puntosBR[0:1, 0, 0:2],self.puntosER[0:1, 3, 0:2])
         self.distvBL1_EL4 = self.__distVertical(self.puntosBL[0:1, 0, 0:2],self.puntosEL[0:1, 3, 0:2])
@@ -157,13 +159,13 @@ class detectarExpresiones():
         self.distvBL2_EL2 = self.__distVertical(self.puntosBL[0:1, 1, 0:2],self.puntosEL[0:1, 1, 0:2])
 
 
-        #AU4 + AU1
+        #AU4
         self.distvBR1_ER1 = self.__distVertical(self.puntosBR[0:1, 0, 0:2], self.puntosER[0:1, 0, 0:2])
         self.distvBL1_EL1 = self.__distVertical(self.puntosBL[0:1, 0, 0:2], self.puntosEL[0:1, 0, 0:2])
         self.distBR2_ER1 = self.__dist(self.puntosBR[0:1, 1, 0:2], self.puntosER[0:1, 0, 0:2])
         self.distBL2_EL1 = self.__dist(self.puntosBL[0:1, 1, 0:2], self.puntosEL[0:1, 0, 0:2])
-        self.distBR3_ER1 = self.__dist(self.puntosBR[0:1, 2, 0:2], self.puntosER[0:1, 0, 0:2]) #AU1
-        self.distBL3_EL1 = self.__dist(self.puntosBL[0:1, 2, 0:2], self.puntosEL[0:1, 0, 0:2]) #AU1
+        self.distBR3_ER1 = self.__dist(self.puntosBR[0:1, 2, 0:2], self.puntosER[0:1, 0, 0:2]) 
+        self.distBL3_EL1 = self.__dist(self.puntosBL[0:1, 2, 0:2], self.puntosEL[0:1, 0, 0:2]) 
         
         #AU6
         self.distER2_ER3 = self.__dist(self.puntosER[0:1, 1, 0:2], self.puntosER[0:1, 2, 0:2])
@@ -176,7 +178,9 @@ class detectarExpresiones():
     def __calcularDistanciasNeutra(self):
         self.distNER1_NEL1 = self.__dist(self.puntosNER[0:1, 0, 0:2], self.puntosNEL[0:1, 0, 0:2])
 
-        #AU1 (estan en AU4)
+        #AU1
+        self.distvNBR3_NER1 = self.__distVertical(self.puntosNBR[0:1, 2, 0:2], self.puntosNER[0:1, 0, 0:2]) 
+        self.distvNBL3_NEL1 = self.__distVertical(self.puntosNBL[0:1, 2, 0:2], self.puntosNEL[0:1, 0, 0:2]) 
 
         #AU2
         self.distvNBR1_NER4 = self.__distVertical(self.puntosNBR[0:1, 0, 0:2],self.puntosNER[0:1, 3, 0:2])
@@ -184,13 +188,13 @@ class detectarExpresiones():
         self.distvNBR2_NER2 = self.__distVertical(self.puntosNBR[0:1, 1, 0:2],self.puntosNER[0:1, 1, 0:2])
         self.distvNBL2_NEL2 = self.__distVertical(self.puntosNBL[0:1, 1, 0:2],self.puntosNEL[0:1, 1, 0:2])
 
-        #AU4 + AU1
+        #AU4
         self.distvNBR1_NER1 = self.__distVertical(self.puntosNBR[0:1, 0, 0:2], self.puntosNER[0:1, 0, 0:2])
         self.distvNBL1_NEL1 = self.__distVertical(self.puntosNBL[0:1, 0, 0:2], self.puntosNEL[0:1, 0, 0:2])
         self.distNBR2_NER1 = self.__dist(self.puntosNBR[0:1, 1, 0:2], self.puntosNER[0:1, 0, 0:2])
         self.distNBL2_NEL1 = self.__dist(self.puntosNBL[0:1, 1, 0:2], self.puntosNEL[0:1, 0, 0:2])
-        self.distNBR3_NER1 = self.__dist(self.puntosNBR[0:1, 2, 0:2], self.puntosNER[0:1, 0, 0:2]) #AU1
-        self.distNBL3_NEL1 = self.__dist(self.puntosNBL[0:1, 2, 0:2], self.puntosNEL[0:1, 0, 0:2]) #AU1
+        self.distNBR3_NER1 = self.__dist(self.puntosNBR[0:1, 2, 0:2], self.puntosNER[0:1, 0, 0:2]) 
+        self.distNBL3_NEL1 = self.__dist(self.puntosNBL[0:1, 2, 0:2], self.puntosNEL[0:1, 0, 0:2]) 
 
         #AU6        
         self.distNER2_NER3 = self.__dist(self.puntosNER[0:1, 1, 0:2], self.puntosNER[0:1, 2, 0:2])
@@ -209,7 +213,9 @@ class detectarExpresiones():
         ##ejemplo:
         self.distER2_ER1 = self.distER2_ER1 * 100 / self.distER1_EL1
 
-        #AU1 (estan en AU4)
+        #AU1
+        self.distvBR3_ER1 = self.distvBR3_ER1 * 100 / self.distER1_EL1 
+        self.distvBL3_EL1 = self.distvBL3_EL1 * 100 / self.distER1_EL1 
 
         #AU2
         self.distvBR1_ER4 = self.distvBR1_ER4 * 100 / self.distER1_EL1
@@ -217,13 +223,13 @@ class detectarExpresiones():
         self.distvBR2_ER2 = self.distvBR2_ER2 * 100 / self.distER1_EL1
         self.distvBL2_EL2 = self.distvBL2_EL2 * 100 / self.distER1_EL1
 
-        #AU4 + AU1
+        #AU4
         self.distvBR1_ER1 = self.distvBR1_ER1 * 100 / self.distER1_EL1
         self.distvBL1_EL1 = self.distvBL1_EL1 * 100 / self.distER1_EL1
         self.distBR2_ER1 = self.distBR2_ER1 * 100 / self.distER1_EL1
         self.distBL2_EL1 = self.distBL2_EL1 * 100 / self.distER1_EL1
-        self.distBR3_ER1 = self.distBR3_ER1 * 100 / self.distER1_EL1 #AU1
-        self.distBL3_EL1 = self.distBL3_EL1 * 100 / self.distER1_EL1 #AU1
+        self.distBR3_ER1 = self.distBR3_ER1 * 100 / self.distER1_EL1 
+        self.distBL3_EL1 = self.distBL3_EL1 * 100 / self.distER1_EL1 
 
         #AU6
         self.distER2_ER3 = self.distER2_ER3 * 100 / self.distER1_EL1
@@ -239,7 +245,9 @@ class detectarExpresiones():
         ##ejemplo:
         self.distNER2_NER1 = self.distNER2_NER1 * 100 / self.distNER1_NEL1
 
-        #AU1 (estan en AU4)
+        #AU1
+        self.distvNBR3_NER1 = self.distvNBR3_NER1 * 100 / self.distNER1_NEL1 
+        self.distvNBL3_NEL1 = self.distvNBL3_NEL1 * 100 / self.distNER1_NEL1 
 
         #AU2
         self.distvNBR1_NER4 = self.distvNBR1_NER4 * 100 / self.distNER1_NEL1
@@ -252,8 +260,8 @@ class detectarExpresiones():
         self.distvNBL1_NEL1 = self.distvNBL1_NEL1 * 100 / self.distNER1_NEL1
         self.distNBR2_NER1 = self.distNBR2_NER1 * 100 / self.distNER1_NEL1
         self.distNBL2_NEL1 = self.distNBL2_NEL1 * 100 / self.distNER1_NEL1
-        self.distNBR3_NER1 = self.distNBR3_NER1 * 100 / self.distNER1_NEL1 #AU1
-        self.distNBL3_NEL1 = self.distNBL3_NEL1 * 100 / self.distNER1_NEL1 #AU1
+        self.distNBR3_NER1 = self.distNBR3_NER1 * 100 / self.distNER1_NEL1 
+        self.distNBL3_NEL1 = self.distNBL3_NEL1 * 100 / self.distNER1_NEL1 
 
         #AU6
         self.distNER2_NER3 = self.distNER2_NER3 * 100 / self.distNER1_NEL1
@@ -282,12 +290,67 @@ class detectarExpresiones():
         #Inner eyebrows raised
         compliance = None
 
+        #Threshold = % del maximo para considerarse activo
+        thr = 0.2
+
+
+        #Max dist = dist entre puntos max para esa AU
+        maxdist_B3 = 100
+
+        ##Ceja derecha
+        if self.distvBR3_ER1 - self.distvNBR3_NER1 > thr * maxdist_B3:
+        	compBR = (self.distvBR3_ER1 - self.distvNBR3_NER1)/maxdist_B3
+        else:
+        	compBR = 0
+        if compBR > 1: compBR = 1
+        ##Ceja izquierda
+        if self.distvBL3_EL1 - self.distvNBL3_NEL1 > thr * maxdist_B3:
+        	comBL = (self.distvBL3_EL1 - self.distvNBL3_NEL1)/maxdist_B3
+        else:
+        	compBL = 0
+        if compBL > 1: compBL = 1
+        ##Resultado
+        compliance = 0.5 * compBR + 0.5 * compBL
         return compliance
 
     def __AU2(self):
         #Outer eyebrows raised
         compliance = None
 
+        #Threshold = % del maximo para considerarse activo
+        thr = 0.2
+
+        #Max dist = dist entre puntos max para esa AU
+        maxdist_B1 = 100 #Punto mas exterior de la ceja
+        maxdist_B2 = 100 #Punto central de la ceja
+
+        ##Ceja derecha
+        if self.distvBR1_ER4 - self.distvNBR1_NER4 > thr * maxdist_B1:
+        	compBR1 = (self.distvBR1_ER4 - self.distvNBR1_NER4)/maxdist_B1
+        else: compBR1 = 0
+        if compBR1 > 1: compBR1 = 1
+
+        if self.distvBR2_ER2 - self.distvNBR2_NER2 > thr * maxdist_B2:
+        	compBR2 = (self.distvBR2_ER2 - self.distvNBR2_NER2)/maxdist_B2
+        else: compBR2 = 0
+        if compBR2 > 1: compBR2 = 1
+
+        compBR = 0.5 * compBR1 + 0.5 * compBR2
+
+        ##Ceja izquierda
+        if self.distvBL1_EL4 - self.distvNBL1_NEL4 > thr * maxdist_B1:
+        	compBL1 = (self.distvBL1_EL4 - self.distvNBL1_NEL4)/maxdist_B1
+        else: compBL1 = 0
+        if compBL1 > 1: compBL1 = 1
+
+        if self.distvBL2_EL2 - self.distvNBL2_NEL2 > thr * maxdist_B2:
+        	compBL2 = (self.distvBL2_EL2 - self.distvNBL2_NEL2)/maxdist_B2
+        else: compBL2 = 0
+        if compBL2 > 1: compBL2 = 1
+
+        compBL = 0.5 * compBL1 + 0.5 * compBL2
+        ##Resultado
+        compliance = 0.5 * compBR + 0.5 * compBL
         return compliance
 
     def __AU4(self):
