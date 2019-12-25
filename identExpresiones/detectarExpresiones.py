@@ -128,13 +128,13 @@ class detectarExpresiones():
         self.__calcularDistanciasNeutra()
 
 # Para calcular las distancias entre dos puntos
-    def dist(self, x1, x2):
+    def __dist(self, x1, x2):
         distancia = math.sqrt((x2[0:1, 0] - x1[0:1, 0])**2
                               + (x2[0:1, 1] - x1[0:1, 1])**2)
         return distancia
 
 # Para calcular las distancias VERTICALES entre dos puntos. x1 (arriba) - x2 (abajo)
-    def distVertical (self, x1, x2):
+    def __distVertical (self, x1, x2):
         distancia = x1[0:1, 1] - x2[0:1, 1]
         return distancia
 
