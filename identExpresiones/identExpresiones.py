@@ -5,6 +5,8 @@ import os
 from zipfile import ZipFile
 import SeleccionarPuntos as sp
 from detectarExpresiones import detectarExpresiones
+# import warnings
+# warnings.filterwarnings('always')
 
 
 # Extraer imágenes de la Database si no se ha hecho antes
@@ -25,9 +27,9 @@ def cargarDatabase():
     data['PATH'] = 0
     # Añadir columna con el path
     for indice in data.index:
-        data.PATH.loc[indice] = ('Images/' + str(indice) + '.'
-                                 + (data.PIC.loc[indice]).replace('-', '.')
-                                 + '.tiff')
+        data.loc[indice, 'PATH'] = ('Images/' + str(indice) + '.'
+                                    + (data.loc[indice, 'PIC']).
+                                    replace('-', '.') + '.tiff')
     return data
 
 
@@ -63,6 +65,7 @@ def dibujarPuntos(imagen, puntos):
 
 if __name__ == "__main__":
     data = cargarDatabase()
+
     ima = cargarImagen(data.loc[30])
 
     # Contiene la información para detectar caras en una imagen
