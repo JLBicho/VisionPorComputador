@@ -66,8 +66,8 @@ def dibujarPuntos(imagen, puntos):
 if __name__ == "__main__":
     data = cargarDatabase()
 
-    ima = cargarImagen(data.loc[30])
-
+    imaNeutra = cargarImagen(data.loc[1])
+    imaFeliz = cargarImagen(data.loc[4])
     # Contiene la información para detectar caras en una imagen
     detectorCara = cv2.CascadeClassifier(cv2.data.haarcascades
                                          + "haarcascade_"
@@ -75,19 +75,26 @@ if __name__ == "__main__":
 
     marcador = cv2.face.createFacemarkLBF()
     marcador.loadModel("Modelos/lbfmodel.yaml")
-
-    puntos = marcarCara(ima, detectorCara, marcador)
-    ima2 = dibujarPuntos(ima, puntos)
+    """
+    puntos = marcarCara(imaNeutra, detectorCara, marcador)
+    ima2 = dibujarPuntos(imaNeutra, puntos)
     mostrarImagen(ima2)
-    mostrarImagen(dibujarPuntos(ima, sp.selPuntosBoca((puntos))))
-    mostrarImagen(dibujarPuntos(ima, sp.selPuntosLabios((puntos))))
-    prueba = detectarExpresiones(detectorCara, marcador, ima)
+    mostrarImagen(dibujarPuntos(imaNeutra, sp.selPuntosBoca((puntos))))
+    mostrarImagen(dibujarPuntos(imaNeutra, sp.selPuntosLabios((puntos))))
+    """
+    prueba = detectarExpresiones(detectorCara, marcador, imaNeutra, imaFeliz)
+    aus = prueba.comprobarAUs()
+    for i in [1, 2, 4, 6, 10, 12, 14]:
+        print("AU" + str(i) + ": " + str(aus[i]))
+
+    print("Felicidad total: " + str(prueba.comprobarFelicidad()))
+
+    """
     prueba.puntosBocaNeutra
     prueba.puntosLabiosNeutra
     print(prueba.puntosBocaNeutra)
     print(prueba.puntosLabiosNeutra)
 
-    """
     mostrarImagen(ima)
     clasifOjos = cv2.CascadeClassifier(cv2.data.haarcascades
                                        + "haarcascade_eye.xml")

@@ -196,9 +196,9 @@ class detectarExpresiones():
                                                 self.puntosEL[0:1, 2, 0:2])
 
         # AU10
-        self.distMR2_ER1 = self.__dist(self.puntosMR[0:1, 2, 0:2],
+        self.distMR2_ER1 = self.__dist(self.puntosMR[0:1, 1, 0:2],
                                        self.puntosER[0:1, 0, 0:2])
-        self.distML2_EL1 = self.__dist(self.puntosML[0:1, 2, 0:2],
+        self.distML2_EL1 = self.__dist(self.puntosML[0:1, 1, 0:2],
                                        self.puntosEL[0:1, 0, 0:2])
         # AU12
         self.distMR1_ER1 = self.__dist(self.puntosMR[0:1, 0, 0:2],
@@ -207,7 +207,7 @@ class detectarExpresiones():
                                        self.puntosEL[0:1, 0, 0:2])
         # AU12 AU14
         self.distMM1_MM2 = self.__dist(self.puntosMM[0:1, 0, 0:2],
-                                       self.puntoMM[0:1, 1, 0:2])
+                                       self.puntosMM[0:1, 1, 0:2])
         # AU14
         self.disthMR1_ER1 = self.__distHorizontal(self.puntosMR[0:1, 0, 0:2],
                                                   self.puntosER[0:1, 0, 0:2])
@@ -261,9 +261,9 @@ class detectarExpresiones():
                                                   self.puntosNEL[0:1, 2, 0:2])
 
         # AU10
-        self.distNMR2_NER1 = self.__dist(self.puntosNMR[0:1, 2, 0:2],
+        self.distNMR2_NER1 = self.__dist(self.puntosNMR[0:1, 1, 0:2],
                                          self.puntosNER[0:1, 0, 0:2])
-        self.distNML2_NEL1 = self.__dist(self.puntosNML[0:1, 2, 0:2],
+        self.distNML2_NEL1 = self.__dist(self.puntosNML[0:1, 1, 0:2],
                                          self.puntosNEL[0:1, 0, 0:2])
         # AU12
         self.distNMR1_NER1 = self.__dist(self.puntosNMR[0:1, 0, 0:2],
@@ -376,7 +376,7 @@ class detectarExpresiones():
 
 # Genera el vector con los AUs que se cumplen con un valor de 0 a 1 para cada
 # AU calculado y -1 en los AU no calculados
-    def __comprobarAUs(self):
+    def comprobarAUs(self):
         self.actionUnits = np.zeros(46) - 1
         self.actionUnits[1] = self.__AU1()
         self.actionUnits[2] = self.__AU2()
@@ -385,6 +385,7 @@ class detectarExpresiones():
         self.actionUnits[10] = self.__AU10()
         self.actionUnits[12] = self.__AU12()
         self.actionUnits[14] = self.__AU14()
+        return self.actionUnits
 
 # TODO: Completar funciones para cada action unit que devuelva un valor de
 #       0 a 1 en funcion del grado de cumplimiento de las condiciones impuestas
@@ -465,10 +466,11 @@ class detectarExpresiones():
         return compliance
 
     def __AU4(self):
-        compliance = None
-        thr_B1 = None
-        thr_B2 = None
-        thr_B3 = None
+        compliance = 0
+        """
+        thr_B1 = 1
+        thr_B2 = 1
+        thr_B3 = 1
         # Right
         if self.distvBR1_ER1 - self.distvNBR1_NER1 > 0.2 * thr_B1:
             compBR1 = (self.distvBR1_ER1 - self.distvNBR1_NER1) / thr_B1
@@ -486,10 +488,12 @@ class detectarExpresiones():
             compBL3 = (self.distBL3_EL1 - self.distNBL3_NEL1) / thr_B3
         complianceL = 0.4 * compBL1 + 0.3 * compBL2 + 0.3 * compBL3
         compliance = 0.5 * complianceR + 0.5 * complianceL
+        """
         return compliance
 
     def __AU6(self):
-        compliance = None
+        compliance = 0
+        """
         thr_E3 = None
         thr_E2_E3 = None
         # Right
@@ -505,15 +509,18 @@ class detectarExpresiones():
             compEL1_EL3 = (self.distvNEL1_NEL3 - self.distvEL1_EL3) / thr_E3
         complianceL = 0.7 * compEL2_EL3 + 0.3 * compEL1_EL3
         compliance = 0.5 * complianceR + 0.5 * complianceL
+        """
         return compliance
 
     def __AU10(self):
         # mr2 up + bit out
         # ml2 up + bit out
-        compliance = None
-        AU10thres = None  # tiene que ser negativo
-        compMR2 = None
-        compML2 = None
+
+        compliance = 0
+
+        AU10thres = 1  # tiene que ser negativo
+        compMR2 = 0
+        compML2 = 0
 
         # Right lip
         if self.distMR2_ER1 - self.distNMR2_NER1 < AU10thres:
@@ -525,6 +532,7 @@ class detectarExpresiones():
         compliance = 0.5 * compML2 + 0.5 * compMR2
         if compliance > 1:
             compliance = 1
+
         return compliance
 
     def __AU12(self):
@@ -532,12 +540,12 @@ class detectarExpresiones():
         # ml1 up + bit out
         # mouth closed
 
-        compliance = None
-        AU12thres = None
-        MMthres = None
-        compMR1 = None
-        compML1 = None
-        compMM = None
+        compliance = 0
+        AU12thres = 1
+        MMthres = 0
+        compMR1 = 0
+        compML1 = 0
+        compMM = 0
 
         # Right lip
         if self.distMR1_ER1 - self.distNMR1_NER1 < AU12thres:
@@ -558,12 +566,12 @@ class detectarExpresiones():
         # ml1: out
         # mouth closed
 
-        compliance = None
-        AU14thres = None
-        MMthres = None
-        compMR1 = None
-        compML1 = None
-        compMM = None
+        compliance = 0
+        AU14thres = 1
+        MMthres = 0
+        compMR1 = 0
+        compML1 = 0
+        compMM = 0
 
         # Right lip
         if self.disthMR1_ER1 - self.disthNMR1_NER1 > AU14thres:
