@@ -196,9 +196,9 @@ class detectarExpresiones():
                                                 self.puntosEL[0:1, 2, 0:2])
 
         # AU10
-        self.distMR2_ER1 = self.__dist(self.puntosMR[0:1, 3, 0:2],
+        self.distMR2_ER1 = self.__dist(self.puntosMR[0:1, 2, 0:2],
                                        self.puntosER[0:1, 0, 0:2])
-        self.distML2_EL1 = self.__dist(self.puntosML[0:1, 3, 0:2],
+        self.distML2_EL1 = self.__dist(self.puntosML[0:1, 2, 0:2],
                                        self.puntosEL[0:1, 0, 0:2])
         # AU12
         self.distMR1_ER1 = self.__dist(self.puntosMR[0:1, 0, 0:2],
@@ -261,9 +261,9 @@ class detectarExpresiones():
                                                   self.puntosNEL[0:1, 2, 0:2])
 
         # AU10
-        self.distNMR2_NER1 = self.__dist(self.puntosNMR[0:1, 3, 0:2],
+        self.distNMR2_NER1 = self.__dist(self.puntosNMR[0:1, 2, 0:2],
                                          self.puntosNER[0:1, 0, 0:2])
-        self.distNML2_NEL1 = self.__dist(self.puntosNML[0:1, 3, 0:2],
+        self.distNML2_NEL1 = self.__dist(self.puntosNML[0:1, 2, 0:2],
                                          self.puntosNEL[0:1, 0, 0:2])
         # AU12
         self.distNMR1_NER1 = self.__dist(self.puntosNMR[0:1, 0, 0:2],
@@ -272,7 +272,7 @@ class detectarExpresiones():
                                          self.puntosNEL[0:1, 0, 0:2])
         # AU12 AU14
         self.distNMM1_NMM2 = self.__dist(self.puntosNMM[0:1, 0, 0:2],
-                                         self.puntoNMM[0:1, 1, 0:2])
+                                         self.puntosNMM[0:1, 1, 0:2])
         # AU14
         self.disthNMR1_NER1 = self.__distHorizontal(self.puntosNMR[0:1, 0, 0:2],
                                                     self.puntosNER[0:1, 0, 0:2])
