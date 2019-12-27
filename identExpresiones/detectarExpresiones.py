@@ -407,7 +407,7 @@ class detectarExpresiones():
             compBR = 1
         # # Ceja izquierda
         if self.distvBL3_EL1 - self.distvNBL3_NEL1 > thr * maxdist_B3:
-            comBL = (self.distvBL3_EL1 - self.distvNBL3_NEL1)/maxdist_B3
+            compBL = (self.distvBL3_EL1 - self.distvNBL3_NEL1)/maxdist_B3
         else:
             compBL = 0
         if compBL > 1:
@@ -479,11 +479,11 @@ class detectarExpresiones():
         complianceR = 0.4 * compBR1 + 0.3 * compBR2 + 0.3 * compBR3
         # Left
         if self.distvBL1_EL1 - self.distvNBL1_NEL1 > 0.2 * thr_B1:
-            compBR1 = (self.distvBL1_EL1 - self.distvNBL1_NEL1) / thr_B1
+            compBL1 = (self.distvBL1_EL1 - self.distvNBL1_NEL1) / thr_B1
         if self.distBL2_EL1 - self.distNBL2_NEL1 > 0.2 * thr_B2:
-            compBR2 = (self.distBL2_EL1 - self.distNBL2_NEL1) / thr_B2
+            compBL2 = (self.distBL2_EL1 - self.distNBL2_NEL1) / thr_B2
         if self.distBL3_EL1 - self.distNBL3_NEL1 > 0.2 * thr_B3:
-            compBR3 = (self.distBL3_EL1 - self.distNBL3_NEL1) / thr_B3
+            compBL3 = (self.distBL3_EL1 - self.distNBL3_NEL1) / thr_B3
         complianceL = 0.4 * compBL1 + 0.3 * compBL2 + 0.3 * compBL3
         compliance = 0.5 * complianceR + 0.5 * complianceL
         return compliance
