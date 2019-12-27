@@ -139,6 +139,12 @@ class detectarExpresiones():
         distancia = x1[0:1, 1] - x2[0:1, 1]
         return distancia
 
+# Para calcular las distancias HORIZONTALES entre dos puntos.
+# x1 (izquierda) - x2 (derecha)
+    def __distHorizontal(self, x1, x2):
+        distancia = x1[0:1, 0] - x2[0:1, 0]
+        return distancia        
+
 # TODO: Para calcular distancia entre puntos usad librerías
 # Calcula las distancias características de la imágen analizable
     def __calcularDistancias(self):
@@ -189,6 +195,24 @@ class detectarExpresiones():
         self.distvEL1_EL3 = self.__distVertical(self.puntosEL[0:1, 0, 0:2],
                                                 self.puntosEL[0:1, 2, 0:2])
 
+        # AU10
+        self.distMR2_ER1 = self.__dist(self.puntosMR[0:1, 3, 0:2],
+                                      self.puntosER[0:1, 0, 0:2])
+        self.distML2_EL1 = self.__dist(self.puntosML[0:1, 3, 0:2],
+                                      self.puntosEL[0:1, 0, 0:2])
+        # AU12
+        self.distMR1_ER1 = self.__dist(self.puntosMR[0:1, 0, 0:2],
+                                      self.puntosER[0:1, 0, 0:2])
+        self.distML1_EL1 = self.__dist(self.puntosML[0:1, 0, 0:2],
+                                      self.puntosEL[0:1, 0, 0:2])
+        # AU12 AU14
+        self.distMM1_MM2 = self.__dist(self.puntosMM[0:1, 0, 0:2],
+                                      self.puntoMM[0:1, 1, 0:2])
+        # AU14
+        self.disthMR1_ER1 = self.__distHorizontal(self.puntosMR[0:1, 0, 0:2],
+                                                  self.puntosER[0:1, 0, 0:2])
+        self.disthML1_EL1 = self.__distHorizontal(self.puntosML[0:1, 0, 0:2],
+                                                  self.puntosEL[0:1, 0, 0:2])
 # TODO
 # Calcula las distancias características de la imágen neutra
     def __calcularDistanciasNeutra(self):
@@ -235,6 +259,25 @@ class detectarExpresiones():
         self.distvNEL1_NEL3 = self.__distVertical(self.puntosNEL[0:1, 0, 0:2],
                                                   self.puntosNEL[0:1, 2, 0:2])
 
+        # AU10
+        self.distNMR2_NER1 = self.__dist(self.puntosNMR[0:1, 3, 0:2],
+                                      self.puntosNER[0:1, 0, 0:2])
+        self.distNML2_NEL1 = self.__dist(self.puntosNML[0:1, 3, 0:2],
+                                      self.puntosNEL[0:1, 0, 0:2])
+        # AU12
+        self.distNMR1_NER1 = self.__dist(self.puntosNMR[0:1, 0, 0:2],
+                                      self.puntosNER[0:1, 0, 0:2])
+        self.distNML1_NEL1 = self.__dist(self.puntosNML[0:1, 0, 0:2],
+                                      self.puntosNEL[0:1, 0, 0:2])
+        # AU12 AU14
+        self.distNMM1_NMM2 = self.__dist(self.puntosNMM[0:1, 0, 0:2],
+                                      self.puntoNMM[0:1, 1, 0:2])
+        # AU14
+        self.disthNMR1_NER1 = self.__distHorizontal(self.puntosNMR[0:1, 0, 0:2],
+                                                  self.puntosNER[0:1, 0, 0:2])
+        self.disthNML1_NEL1 = self.__distHorizontal(self.puntosNML[0:1, 0, 0:2],
+                                                  self.puntosNEL[0:1, 0, 0:2])
+
 # TODO
 # Escala la distancia entre ER1 y EL1 a 100 para ambas imagenes y el
 # resto de distancias en la misma escala
@@ -272,6 +315,21 @@ class detectarExpresiones():
 
         self.distER1_EL1 = 100
 
+        # AU10
+        self.distMR2_ER1 = self.distMR2_ER1 * 100 / self.distNER1_NEL1
+        self.distML2_EL1 = self.distML2_EL1 * 100 / self.distNER1_NEL1
+
+        # AU12
+        self.distMR1_ER1 = self.distMR1_ER1 * 100 / self.distNER1_NEL1
+        self.distML1_EL1 = self.distML1_EL1 * 100 / self.distNER1_NEL1
+
+        # AU12 AU14
+        self.distMM1_MM2 = self.distMM1_MM2 * 100 / self.distNER1_NEL1
+
+        # AU14
+        self.disthMR1_ER1 = self.disthMR1_ER1 * 100 / self.distNER1_NEL1
+        self.disthML1_EL1 = self.disthML1_EL1 * 100 / self.distNER1_NEL1
+
         # Imagen Neutra
 
         # # ejemplo:
@@ -302,6 +360,18 @@ class detectarExpresiones():
         self.distvNEL1_NEL3 = self.distvNEL1_NEL3 * 100 / self.distNER1_NEL1
 
         self.distNER1_NEL1 = 100
+
+        # AU10
+        self.distNMR2_NER1 = self.distNMR2_NER1 * 100 / self.distNER1_NEL1
+        self.distNML2_NEL1 = self.distNML2_NEL1 * 100 / self.distNER1_NEL1
+        
+        # AU12
+        self.distNMR1_NER1 = self.distNMR1_NER1 * 100 / self.distNER1_NEL1
+        self.distNML1_NEL1 = self.distNML1_NEL1 * 100 / self.distNER1_NEL1
+        
+        # AU14
+        self.disthNMR1_NER1 = self.disthNMR1_NER1 * 100 / self.distNER1_NEL1
+        self.disthNML1_NEL1 = self.disthNML1_NEL1 * 100 / self.distNER1_NEL1
 
 # Genera el vector con los AUs que se cumplen con un valor de 0 a 1 para cada
 # AU calculado y -1 en los AU no calculados
@@ -437,13 +507,76 @@ class detectarExpresiones():
         return compliance
 
     def __AU10(self):
-        return 0
+        # mr2 up + bit out
+        # ml2 up + bit out
+        compliance = None
+        AU10thres = None # tiene que ser negativo
+        compMR2 = None
+        compML2 = None
+
+        # Right lip
+        if self.distMR2_ER1 - self.distNMR2_NER1 < AU10thres:
+            compMR2 = (self.distMR2_ER1 - self.distNMR2_ER1) / AU10thres
+        # Left lip
+        if self.distML2_EL1 - self.distNML2_NEL1 < AU10thres:
+            compML2 = (self.distML2_EL1 - self.distNML2_NEL1) / AU10thres
+
+        compliance = 0.5 * compML2 + 0.5 * compMR2
+        if compliance > 1:
+            compliance = 1
+        return compliance
 
     def __AU12(self):
-        return 0
+        # mr1 up + bit out
+        # ml1 up + bit out
+        # mouth closed
+
+        compliance = None
+        AU12thres = None
+        MMthres = None
+        compMR1 = None
+        compML1 = None
+        compMM = None
+
+        # Right lip
+        if self.distMR1_ER1 - self.distNMR1_NER1 < AU12thres:
+           compMR1 =  (self.distMR1_ER1 - self.distNMR1_NER1) / AU12thres
+        # Left lip
+        if self.distML1_EL1 - self.distNML1_NEL1 < AU12thres:
+           compML1 = (self.distML1_EL1 - self.distNML1_NEL1) / AU12thres
+        # Mouth closed: the more closed, the more compliance
+        if self.distMM1_MM2 < MMthres:
+            compMM = 1 - self.distMM1_MM2
+        
+        compliance = 0.5 * (0.5 * compML1 + 0.5 * compMR1) + 0.5 * compMM
+        
+        return compliance
 
     def __AU14(self):
-        return 0
+        # mr1: out
+        # ml1: out
+        # mouth closed
+
+        compliance = None
+        AU14thres = None
+        MMthres = None
+        compMR1 = None
+        compML1 = None
+        compMM = None
+
+        # Right lip
+        if self.disthMR1_ER1 - self.disthNMR1_NER1 > AU14thres:
+           compMR1 =  (self.disthMR1_ER1 - self.disthNMR1_NER1) / AU14thres
+        # Left lip
+        if self.disthML1_EL1 - self.disthNML1_NEL1 > AU14thres:
+           compML1 = (self.disthML1_EL1 - self.disthNML1_NEL1) / AU14thres
+        # Mouth closed: the more closed, the more compliance
+        if self.distMM1_MM2 < MMthres:
+            compMM = 1 - self.distMM1_MM2
+
+        compliance = 0.5 * (0.5 * compML1 + 0.5 * compMR1) + 0.5 * compMM
+        
+        return compliance
 
 # TODO: Introducir parámetros en la ponderación modificables para ajustar
 #       el modelo posteriormente.
