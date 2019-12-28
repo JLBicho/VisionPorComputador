@@ -468,46 +468,107 @@ class detectarExpresiones():
     def __AU4(self):
         compliance = 0
         """
-        thr_B1 = 1
-        thr_B2 = 1
-        thr_B3 = 1
+        thr = 0.2
+
+        maxdist_B1 = 100  # Punto exterior de la ceja
+        maxdist_B2 = 100  # Punto central de la ceja
+        maxdist_B3 = 100  # Punto interior de la ceja
+
         # Right
-        if self.distvBR1_ER1 - self.distvNBR1_NER1 > 0.2 * thr_B1:
-            compBR1 = (self.distvBR1_ER1 - self.distvNBR1_NER1) / thr_B1
-        if self.distBR2_ER1 - self.distNBR2_NER1 > 0.2 * thr_B2:
-            compBR2 = (self.distBR2_ER1 - self.distNBR2_NER1) / thr_B2
-        if self.distBR3_ER1 - self.distNBR3_NER1 > 0.2 * thr_B3:
-            compBR3 = (self.distBR3_ER1 - self.distNBR3_NER1) / thr_B3
+        if self.distvBR1_ER1 - self.distvNBR1_NER1 > thr * maxdist_B1:
+            compBR1 = (self.distvBR1_ER1 - self.distvNBR1_NER1) / maxdist_B1
+        else:
+            compBR1 = 0
+        if compBR1 > 1:
+            compBR1 = 1
+
+        if self.distBR2_ER1 - self.distNBR2_NER1 > thr * maxdist_B2:
+            compBR2 = (self.distBR2_ER1 - self.distNBR2_NER1) / maxdist_B2
+        else:
+            compBR2 = 0
+        if compBR2 > 1:
+            compBR2 = 1
+
+        if self.distBR3_ER1 - self.distNBR3_NER1 > thr * maxdist_B3:
+            compBR3 = (self.distBR3_ER1 - self.distNBR3_NER1) / maxdist_B3
+        else:
+            compBR3 = 0
+        if compBR3 > 1:
+            compBR3 = 1
+
         complianceR = 0.4 * compBR1 + 0.3 * compBR2 + 0.3 * compBR3
+
         # Left
-        if self.distvBL1_EL1 - self.distvNBL1_NEL1 > 0.2 * thr_B1:
-            compBL1 = (self.distvBL1_EL1 - self.distvNBL1_NEL1) / thr_B1
-        if self.distBL2_EL1 - self.distNBL2_NEL1 > 0.2 * thr_B2:
-            compBL2 = (self.distBL2_EL1 - self.distNBL2_NEL1) / thr_B2
-        if self.distBL3_EL1 - self.distNBL3_NEL1 > 0.2 * thr_B3:
-            compBL3 = (self.distBL3_EL1 - self.distNBL3_NEL1) / thr_B3
+        if self.distvBL1_EL1 - self.distvNBL1_NEL1 > thr * maxdist_B1:
+            compBL1 = (self.distvBL1_EL1 - self.distvNBL1_NEL1) / maxdist_B1
+        else:
+            compBL1 = 0
+        if compBL1 > 1:
+            compBL1 = 1
+
+        if self.distBL2_EL1 - self.distNBL2_NEL1 > thr * maxdist_B2:
+            compBL2 = (self.distBL2_EL1 - self.distNBL2_NEL1) / maxdist_B2
+        else:
+            compBL2 = 0
+        if compBL2 > 1:
+            compBL2 = 1
+
+        if self.distBL3_EL1 - self.distNBL3_NEL1 > thr * maxdist_B3:
+            compBL3 = (self.distBL3_EL1 - self.distNBL3_NEL1) / maxdist_B3
+        else:
+            compBL3 = 0
+        if compBL3 > 1:
+            compBL3 = 1
+
         complianceL = 0.4 * compBL1 + 0.3 * compBL2 + 0.3 * compBL3
+
+        #Resultado
         compliance = 0.5 * complianceR + 0.5 * complianceL
+
         """
         return compliance
 
     def __AU6(self):
         compliance = 0
         """
-        thr_E3 = None
-        thr_E2_E3 = None
+        thr = 0.2
+        maxdist_E3 = 100
+        maxdist_E2E3 = 100
+
         # Right
-        if self.distNER2_NER3 - self.distER2_ER3 > 0.2 * thr_E2_E3:
-            compER2_ER3 = (self.distNER2_NER3 - self.distER2_ER3) / thr_E2_E3
-        if self.distvNER1_NER3 - self.distvER1_ER3 > 0.2 * thr_E3:
-            compER1_ER3 = (self.distvNER1_NER3 - self.distvER1_ER3) / thr_E3
+        if self.distNER2_NER3 - self.distER2_ER3 > thr * maxdist_E2E3:
+            compER2_ER3 = (self.distNER2_NER3 - self.distER2_ER3) / maxdist_E2E3
+        else:
+            compER2_ER3 = 0
+        if compER2_ER3 > 1:
+            compER2_ER3 = 1
+        if self.distvNER1_NER3 - self.distvER1_ER3 > thr * maxdist_E3:
+            compER1_ER3 = (self.distvNER1_NER3 - self.distvER1_ER3) / maxdist_E3
+        else:
+            compER1_ER3 = 0
+        if compER1_ER3 > 1:
+            compER1_ER3 = 1
+
         complianceR = 0.7 * compER2_ER3 + 0.3 * compER1_ER3
+
         # Left
-        if self.distNEL2_NEL3 - self.distEL2_EL3 > 0.2 * thr_E2_E3:
-            compEL2_EL3 = (self.distNEL2_NEL3 - self.distEL2_EL3) / thr_E2_E3
-        if self.distvNEL1_NEL3 - self.distvEL1_EL3 > 0.2 * thr_E3:
-            compEL1_EL3 = (self.distvNEL1_NEL3 - self.distvEL1_EL3) / thr_E3
+        if self.distNEL2_NEL3 - self.distEL2_EL3 > thr * maxdist_E2E3:
+            compEL2_EL3 = (self.distNEL2_NEL3 - self.distEL2_EL3) / maxdist_E2E3
+        else:
+            compEL2_EL3 = 0
+        if compEL2_EL3 > 1:
+            compEL2_EL3 = 1
+
+        if self.distvNEL1_NEL3 - self.distvEL1_EL3 > thr * maxdist_E3:
+            compEL1_EL3 = (self.distvNEL1_NEL3 - self.distvEL1_EL3) / maxdist_E3
+        else:
+            compEL1_EL3 = 0
+        if compEL1_EL3 > 1:
+            compEL1_EL3 = 1
+
         complianceL = 0.7 * compEL2_EL3 + 0.3 * compEL1_EL3
+
+        #Resultado
         compliance = 0.5 * complianceR + 0.5 * complianceL
         """
         return compliance
