@@ -89,6 +89,20 @@ if __name__ == "__main__":
 
     print("Felicidad total: " + str(prueba.comprobarFelicidad()))
 
+    ##pruebas montse
+    dis = prueba.distvBR3_ER1 - prueba.distvNBR3_NER1
+    print("BR3 " + str(dis))
+    dis = prueba.distvBL3_EL1 - prueba.distvNBL3_NEL1
+    print("BL3 " + str(dis))
+    dis = prueba.distvBR2_ER2 - prueba.distvNBR2_NER2
+    print("BR2 " + str(dis))
+    dis = prueba.distvBL2_EL2 - prueba.distvNBL2_NEL2
+    print("BL2 " + str(dis))
+    dis = prueba.distvBR1_ER4 - prueba.distvNBR1_NER4
+    print("BR1 " + str(dis))
+    dis = prueba.distvBL1_EL4 - prueba.distvNBL1_NEL4
+    print("BL1 " + str(dis))
+
     """
     prueba.puntosBocaNeutra
     prueba.puntosLabiosNeutra
