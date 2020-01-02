@@ -694,13 +694,15 @@ class detectarExpresiones():
 # Devuelve el valor de felicidad de 0 a 1 ponderado (mediante
 # paramFelicidad a partir del vector actionUnits
     def comprobarFelicidad(self):
-        self.paramFelicidad = np.zeros(46) - 1
-        self.paramFelicidad[1] = 0
-        self.paramFelicidad[2] = 0
-        self.paramFelicidad[4] = 0
-        self.paramFelicidad[6] = 0
-        self.paramFelicidad[10] = 0
-        self.paramFelicidad[12] = 0
-        self.paramFelicidad[14] = 0
-        self.felicidad = np.dot(self.actionUnits, self.paramFelicidad)
+        self.paramFelicidad = np.zeros(46)
+        self.paramFelicidad[1] = 1
+        self.paramFelicidad[2] = -1
+        self.paramFelicidad[4] = -1
+        self.paramFelicidad[6] = 1
+        self.paramFelicidad[10] = -1
+        self.paramFelicidad[12] = 1
+        self.paramFelicidad[14] = 1
+        feliz = np.dot(self.actionUnits, self.paramFelicidad)
+        # Feliz va de -3 a 4 se reajusta para que vaya de 0 a 1
+        self.felicidad = (feliz + 3) / 7
         return self.felicidad
