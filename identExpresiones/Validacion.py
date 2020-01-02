@@ -25,6 +25,8 @@ def pruebasAU(data, au, detectExp):
             aus = detectExp.comprobarAUs()
             if row.HAP > 4:
                 totalAUfeliz.append(aus[au])
+                print("Imagen: " + str(i))
+                print("AUs:" + str(aus[au]))
             else:
                 totalAUnoFeliz.append(aus[au])
         personaAnterior = persona
@@ -43,4 +45,5 @@ if __name__ == '__main__':
     marcador.loadModel("Modelos/lbfmodel.yaml")
     prueba = de.detectarExpresiones(detectorCara, marcador)
     data = ie.cargarDatabase()
-    pruebasAU(data, 1, prueba)
+    print(pruebasAU(data, 1, prueba))
+    
