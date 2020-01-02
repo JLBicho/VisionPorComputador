@@ -546,7 +546,7 @@ class detectarExpresiones():
 
         # Right lip
         if self.distMR2_ER1 - self.distNMR2_NER1 < AU10thres:
-            compMR2 = (self.distMR2_ER1 - self.distNMR2_ER1) / AU10thres
+            compMR2 = (self.distMR2_ER1 - self.distNMR2_NER1) / AU10thres
         if compMR2 > 1:
         	compMR2 = 1
         # Left lip
@@ -615,12 +615,12 @@ class detectarExpresiones():
             compML1 = (self.disthML1_EL1 - self.disthNML1_NEL1) / AU14thres
         if compML1 > 1:
             compML1 = 1
-        # Mouth closed: the more closed, the more compliance        
+        # Mouth closed: the more closed, the more compliance
         if self.distMM1_MM2 < MMthres:
             compMM = 1 - self.distMM1_MM2
         if compMM > 1:
             compMM = 1
-        
+
         compliance = 0.5 * (0.5 * compML1 + 0.5 * compMR1) + 0.5 * compMM
 
         if compliance > 1:
