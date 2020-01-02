@@ -394,25 +394,46 @@ class detectarExpresiones():
         compliance = None
 
         # Threshold = % del maximo para considerarse activo
-        thr = 0.2
+        thr2 = 0.2
+        thr3 = 0.3
 
         # Max dist = dist entre puntos max para esa AU
-        maxdist_B3 = 100
+        maxdist_B3 = 7.5
+        maxdist_B2 = 7.5
 
         # # Ceja derecha
-        if self.distvBR3_ER1 - self.distvNBR3_NER1 > thr * maxdist_B3:
-            compBR = (self.distvBR3_ER1 - self.distvNBR3_NER1)/maxdist_B3
+        if self.distvBR3_ER1 - self.distvNBR3_NER1 > thr3 * maxdist_B3:
+            compBR3 = (self.distvBR3_ER1 - self.distvNBR3_NER1)/maxdist_B3
         else:
-            compBR = 0
-        if compBR > 1:
-            compBR = 1
+            compBR3 = 0
+        if compBR3 > 1:
+            compBR3 = 1
+
+        if self.distvBR2_ER2 - self.distvNBR2_NER2 > thr2 * maxdist_B2:
+            compBR2 = (self.distvBR2_ER2 - self.distvNBR2_NER2)/maxdist_B2
+        else:
+            compBR2 = 0
+        if compBR2 > 1:
+            compBR2 = 1
+
+        compBR = 0.65 * compBR3 + 0.35 * compBR2
+
         # # Ceja izquierda
-        if self.distvBL3_EL1 - self.distvNBL3_NEL1 > thr * maxdist_B3:
-            compBL = (self.distvBL3_EL1 - self.distvNBL3_NEL1)/maxdist_B3
+        if self.distvBL3_EL1 - self.distvNBL3_NEL1 > thr3 * maxdist_B3:
+            compBL3 = (self.distvBL3_EL1 - self.distvNBL3_NEL1)/maxdist_B3
         else:
-            compBL = 0
-        if compBL > 1:
-            compBL = 1
+            compBL3 = 0
+        if compBL3 > 1:
+            compBL3 = 1
+
+        if self.distvBL2_EL2 - self.distvNBL2_NEL2 > thr2 * maxdist_B2:
+            compBL2 = (self.distvBL2_EL2 - self.distvNBL2_NEL2)/maxdist_B2
+        else:
+            compBL2 = 0
+        if compBL2 > 1:
+            compBL2 = 1
+
+        compBL = 0.65 * compBL3 + 0.35 * compBL2
         # # Resultado
         compliance = 0.5 * compBR + 0.5 * compBL
         return compliance
@@ -422,45 +443,46 @@ class detectarExpresiones():
         compliance = None
 
         # Threshold = % del maximo para considerarse activo
-        thr = 0.2
+        thr1 = 0.3
+        thr2 = 0.2
 
         # Max dist = dist entre puntos max para esa AU
-        maxdist_B1 = 100  # Punto mas exterior de la ceja
-        maxdist_B2 = 100  # Punto central de la ceja
+        maxdist_B1 = 10  # Punto mas exterior de la ceja
+        maxdist_B2 = 10  # Punto central de la ceja
 
         # # Ceja derecha
-        if self.distvBR1_ER4 - self.distvNBR1_NER4 > thr * maxdist_B1:
+        if self.distvBR1_ER4 - self.distvNBR1_NER4 > thr1 * maxdist_B1:
             compBR1 = (self.distvBR1_ER4 - self.distvNBR1_NER4)/maxdist_B1
         else:
             compBR1 = 0
         if compBR1 > 1:
             compBR1 = 1
 
-        if self.distvBR2_ER2 - self.distvNBR2_NER2 > thr * maxdist_B2:
+        if self.distvBR2_ER2 - self.distvNBR2_NER2 > thr2 * maxdist_B2:
             compBR2 = (self.distvBR2_ER2 - self.distvNBR2_NER2)/maxdist_B2
         else:
             compBR2 = 0
         if compBR2 > 1:
             compBR2 = 1
 
-        compBR = 0.5 * compBR1 + 0.5 * compBR2
+        compBR = 0.65 * compBR1 + 0.35 * compBR2
 
         # # Ceja izquierda
-        if self.distvBL1_EL4 - self.distvNBL1_NEL4 > thr * maxdist_B1:
+        if self.distvBL1_EL4 - self.distvNBL1_NEL4 > thr1 * maxdist_B1:
             compBL1 = (self.distvBL1_EL4 - self.distvNBL1_NEL4)/maxdist_B1
         else:
             compBL1 = 0
         if compBL1 > 1:
             compBL1 = 1
 
-        if self.distvBL2_EL2 - self.distvNBL2_NEL2 > thr * maxdist_B2:
+        if self.distvBL2_EL2 - self.distvNBL2_NEL2 > thr2 * maxdist_B2:
             compBL2 = (self.distvBL2_EL2 - self.distvNBL2_NEL2)/maxdist_B2
         else:
             compBL2 = 0
         if compBL2 > 1:
             compBL2 = 1
 
-        compBL = 0.5 * compBL1 + 0.5 * compBL2
+        compBL = 0.65 * compBL1 + 0.35 * compBL2
         # # Resultado
         compliance = 0.5 * compBR + 0.5 * compBL
         return compliance
@@ -579,16 +601,20 @@ class detectarExpresiones():
 
         compliance = 0
 
-        AU10thres = 1  # tiene que ser negativo
+        AU10thres = -0.5  # tiene que ser negativo
         compMR2 = 0
         compML2 = 0
 
         # Right lip
         if self.distMR2_ER1 - self.distNMR2_NER1 < AU10thres:
-            compMR2 = (self.distMR2_ER1 - self.distNMR2_ER1) / AU10thres
+            compMR2 = (self.distMR2_ER1 - self.distNMR2_NER1) / AU10thres
+        if compMR2 > 1:
+        	compMR2 = 1
         # Left lip
         if self.distML2_EL1 - self.distNML2_NEL1 < AU10thres:
             compML2 = (self.distML2_EL1 - self.distNML2_NEL1) / AU10thres
+        if compML2 > 1:
+            compML2 = 1
 
         compliance = 0.5 * compML2 + 0.5 * compMR2
         if compliance > 1:
@@ -602,8 +628,8 @@ class detectarExpresiones():
         # mouth closed
 
         compliance = 0
-        AU12thres = 1
-        MMthres = 0
+        AU12thres = -0.5
+        MMthres = 0.5
         compMR1 = 0
         compML1 = 0
         compMM = 0
@@ -611,15 +637,21 @@ class detectarExpresiones():
         # Right lip
         if self.distMR1_ER1 - self.distNMR1_NER1 < AU12thres:
             compMR1 = (self.distMR1_ER1 - self.distNMR1_NER1) / AU12thres
+        if compMR1 > 1:
+            compMR1 = 1
         # Left lip
         if self.distML1_EL1 - self.distNML1_NEL1 < AU12thres:
             compML1 = (self.distML1_EL1 - self.distNML1_NEL1) / AU12thres
+        if compML1 > 1:
+            compML1 = 1
         # Mouth closed: the more closed, the more compliance
         if self.distMM1_MM2 < MMthres:
             compMM = 1 - self.distMM1_MM2
-
+        if compMM > 1:
+            compMM = 1
         compliance = 0.5 * (0.5 * compML1 + 0.5 * compMR1) + 0.5 * compMM
-
+        if compliance > 1:
+            compliance = 1
         return compliance
 
     def __AU14(self):
@@ -628,8 +660,8 @@ class detectarExpresiones():
         # mouth closed
 
         compliance = 0
-        AU14thres = 1
-        MMthres = 0
+        AU14thres = 0.5
+        MMthres = 0.2
         compMR1 = 0
         compML1 = 0
         compMM = 0
@@ -637,14 +669,23 @@ class detectarExpresiones():
         # Right lip
         if self.disthMR1_ER1 - self.disthNMR1_NER1 > AU14thres:
             compMR1 = (self.disthMR1_ER1 - self.disthNMR1_NER1) / AU14thres
+        if compMR1 > 1:
+            compMR1 = 1
         # Left lip
         if self.disthML1_EL1 - self.disthNML1_NEL1 > AU14thres:
             compML1 = (self.disthML1_EL1 - self.disthNML1_NEL1) / AU14thres
+        if compML1 > 1:
+            compML1 = 1
         # Mouth closed: the more closed, the more compliance
         if self.distMM1_MM2 < MMthres:
             compMM = 1 - self.distMM1_MM2
+        if compMM > 1:
+            compMM = 1
 
         compliance = 0.5 * (0.5 * compML1 + 0.5 * compMR1) + 0.5 * compMM
+
+        if compliance > 1:
+            compliance = 1
 
         return compliance
 

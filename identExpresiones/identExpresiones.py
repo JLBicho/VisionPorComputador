@@ -65,7 +65,6 @@ def dibujarPuntos(imagen, puntos):
 
 if __name__ == "__main__":
     data = cargarDatabase()
-
     imaNeutra = cargarImagen(data.loc[1])
     imaFeliz = cargarImagen(data.loc[4])
     # Contiene la información para detectar caras en una imagen
@@ -88,7 +87,6 @@ if __name__ == "__main__":
         print("AU" + str(i) + ": " + str(aus[i]))
 
     print("Felicidad total: " + str(prueba.comprobarFelicidad()))
-
     """
     prueba.puntosBocaNeutra
     prueba.puntosLabiosNeutra
