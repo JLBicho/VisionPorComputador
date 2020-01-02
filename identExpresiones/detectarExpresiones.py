@@ -552,10 +552,10 @@ class detectarExpresiones():
 
     def __AU6(self):
         compliance = 0
-        """
+        
         thr = 0.2
-        maxdist_E3 = 100
-        maxdist_E2E3 = 100
+        maxdist_E3 = 1.5
+        maxdist_E2E3 = 1.5
 
         # Right
         if self.distNER2_NER3 - self.distER2_ER3 > thr * maxdist_E2E3:
@@ -592,7 +592,7 @@ class detectarExpresiones():
 
         #Resultado
         compliance = 0.5 * complianceR + 0.5 * complianceL
-        """
+        
         return compliance
 
     def __AU10(self):
