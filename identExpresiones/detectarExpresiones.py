@@ -601,43 +601,46 @@ class detectarExpresiones():
 
         compliance = 0
 
-        AU10thres = 0.5
+        AU10thres = 0.1
         compMR2 = 0
         compML2 = 0
         compMR1 = 0
         compML1 = 0
 
         # Right up lip
-        if self.distMR2_ER1 - self.distNMR2_NER1 < 10*AU10thres:
-            compMR2 = (self.distMR2_ER1 - self.distNMR2_NER1) / 10
+        if self.distMR2_ER1 - self.distNMR2_NER1 > 10*AU10thres:
+            compMR2 = (self.distMR2_ER1 - self.distNMR2_NER1) / 1
         if compMR2 > 1:
         	compMR2 = 1
         # Left up lip
-        if self.distML2_EL1 - self.distNML2_NEL1 < 10*AU10thres:
-            compML2 = (self.distML2_EL1 - self.distNML2_NEL1) / 10
+        if self.distML2_EL1 - self.distNML2_NEL1 > 10*AU10thres:
+            compML2 = (self.distML2_EL1 - self.distNML2_NEL1) / 1
         if compML2 > 1:
             compML2 = 1
 
         # Right lip
-        if self.distMR1_ER1 - self.distNMR1_NER1 < 10*(-0.3):
-            compMR1 = -(self.distMR1_ER1 - self.distNMR1_NER1) / 5
+        if abs(self.distMR1_ER1 - self.distNMR1_NER1) > 10*(0.1):
+            compMR1 = abs(self.distMR1_ER1 - self.distNMR1_NER1) / 5
         if compMR1 > 1:
             compMR1 = 1
         # Left lip
-        if self.distML1_EL1 - self.distNML1_NEL1 < 10*(-0.3):
-            compML1 = -(self.distML1_EL1 - self.distNML1_NEL1) / 5
+        if abs(self.distML1_EL1 - self.distNML1_NEL1) > 10*(0.1):
+            compML1 = abs(self.distML1_EL1 - self.distNML1_NEL1) / 5
         if compML1 > 1:
             compML1 = 1
 
-        compliance = 0.25 * compML2 + 0.25 * compMR2 - 0.25 * compML1 - 0.25 * compMR1
+        compliance = 0.75*(0.5 * compML2 + 0.5 * compMR2) - 0.35*(0.5* compML1 - 0.5 * compMR1)
         if compliance > 1:
             compliance = 1
         elif compliance < 0:
             compliance = 0
 
-        # print("AU10: compMR2, compML2: " + str(compMR2) + ", " + str(compML2))
-        # print("AU10: distMR2, distML2: " + str(self.distMR2_ER1 - self.distNMR2_NER1) + ", " + str(self.distML2_EL1 - self.distNML2_NEL1))
+        #print("AU10: compMR2, compML2: " + str(compMR2) + ", " + str(compML2))
+        #print("AU10: distMR2, distML2: " + str(self.distMR2_ER1 - self.distNMR2_NER1) + ", " + str(self.distML2_EL1 - self.distNML2_NEL1))
 
+        print("AU10: compMR1, compML1: " + str(compMR1) + ", " + str(compML1))
+        print("AU10: distMR1, distML1: " + str(self.distMR1_ER1 - self.distNMR1_NER1) + ", " + str(self.distML1_EL1 - self.distNML1_NEL1))
+        
         return compliance
 
     def __AU12(self):
