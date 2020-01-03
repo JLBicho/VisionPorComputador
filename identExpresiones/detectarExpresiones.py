@@ -598,34 +598,45 @@ class detectarExpresiones():
     def __AU10(self):
         # mr2 up + bit out
         # ml2 up + bit out
-        # mr1 same
-        # ml1 same
 
         compliance = 0
 
-        AU10thres = 1  # tiene que ser negativo
+        AU10thres = 0.5
         compMR2 = 0
         compML2 = 0
+        compMR1 = 0
+        compML1 = 0
 
         # Right up lip
         if self.distMR2_ER1 - self.distNMR2_NER1 < 10*AU10thres:
-            compMR2 = (self.distMR2_ER1 - self.distNMR2_NER1) / AU10thres
+            compMR2 = (self.distMR2_ER1 - self.distNMR2_NER1) / 10
         if compMR2 > 1:
         	compMR2 = 1
         # Left up lip
         if self.distML2_EL1 - self.distNML2_NEL1 < 10*AU10thres:
-            compML2 = (self.distML2_EL1 - self.distNML2_NEL1) / AU10thres
+            compML2 = (self.distML2_EL1 - self.distNML2_NEL1) / 10
         if compML2 > 1:
             compML2 = 1
 
-        compliance = 0.5 * compML2 + 0.5 * compMR2
+        # Right lip
+        if self.distMR1_ER1 - self.distNMR1_NER1 < 10*(-0.3):
+            compMR1 = -(self.distMR1_ER1 - self.distNMR1_NER1) / 5
+        if compMR1 > 1:
+            compMR1 = 1
+        # Left lip
+        if self.distML1_EL1 - self.distNML1_NEL1 < 10*(-0.3):
+            compML1 = -(self.distML1_EL1 - self.distNML1_NEL1) / 5
+        if compML1 > 1:
+            compML1 = 1
+
+        compliance = 0.25 * compML2 + 0.25 * compMR2 - 0.25 * compML1 - 0.25 * compMR1
         if compliance > 1:
             compliance = 1
         elif compliance < 0:
             compliance = 0
 
         # print("AU10: compMR2, compML2: " + str(compMR2) + ", " + str(compML2))
-        # print("AU10: distMR2, distML2: " + str(self.distMR2_ER1 - self.distNMR2_NER1) + ", " + str(self.distML2_EL1 - self.distNML2_NEL1))
+        # print("AU10: distMR2, distML2: " + str(self.distMR2_ER1 - self.distNMR2_NER1) + ", " + str(self.distML2_EL1 - self.distNML2_NEL1))
 
         return compliance
 
@@ -635,7 +646,7 @@ class detectarExpresiones():
         # mouth closed: ignorado
 
         compliance = 0
-        AU12thres = -0.5
+        AU12thres = -0.3
         # MMthres = 0.5
         compMR1 = 0
         compML1 = 0
@@ -643,12 +654,12 @@ class detectarExpresiones():
 
         # Right lip
         if self.distMR1_ER1 - self.distNMR1_NER1 < 10*AU12thres:
-            compMR1 = -(self.distMR1_ER1 - self.distNMR1_NER1) / 7
+            compMR1 = -(self.distMR1_ER1 - self.distNMR1_NER1) / 5
         if compMR1 > 1:
             compMR1 = 1
         # Left lip
         if self.distML1_EL1 - self.distNML1_NEL1 < 10*AU12thres:
-            compML1 = -(self.distML1_EL1 - self.distNML1_NEL1) / 7
+            compML1 = -(self.distML1_EL1 - self.distNML1_NEL1) / 5
         if compML1 > 1:
             compML1 = 1
         # Mouth closed: the more closed, the more compliance
@@ -673,7 +684,7 @@ class detectarExpresiones():
         # mouth closed: ignorado
 
         compliance = 0
-        AU14thres = 0.6
+        AU14thres = 0.4
         # MMthres = 0.2
         compMR1 = 0
         compML1 = 0
@@ -681,12 +692,12 @@ class detectarExpresiones():
 
         # Right lip
         if -(self.disthMR1_ER1 - self.disthNMR1_NER1) > 10*AU14thres:
-            compMR1 = -(self.disthMR1_ER1 - self.disthNMR1_NER1) / 7
+            compMR1 = -(self.disthMR1_ER1 - self.disthNMR1_NER1) / 5
         if compMR1 > 1:
             compMR1 = 1
         # Left lip
         if self.disthML1_EL1 - self.disthNML1_NEL1 > 10*AU14thres:
-            compML1 = (self.disthML1_EL1 - self.disthNML1_NEL1) / 7
+            compML1 = (self.disthML1_EL1 - self.disthNML1_NEL1) / 5
         if compML1 > 1:
             compML1 = 1
         # Mouth closed: the more closed, the more compliance

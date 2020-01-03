@@ -45,5 +45,5 @@ if __name__ == '__main__':
     marcador.loadModel("Modelos/lbfmodel.yaml")
     prueba = de.detectarExpresiones(detectorCara, marcador)
     data = ie.cargarDatabase()
-    print(pruebasAU(data, 1, prueba))
+    print(pruebasAU(data, 10, prueba))
     
