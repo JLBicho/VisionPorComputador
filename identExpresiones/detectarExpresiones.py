@@ -161,6 +161,7 @@ class detectarExpresiones():
                                                 self.puntosER[0:1, 0, 0:2])
         self.distvBL3_EL1 = self.__distVertical(self.puntosBL[0:1, 2, 0:2],
                                                 self.puntosEL[0:1, 0, 0:2])
+
         # AU2
         self.distvBR1_ER4 = self.__distVertical(self.puntosBR[0:1, 0, 0:2],
                                                 self.puntosER[0:1, 3, 0:2])
@@ -225,6 +226,7 @@ class detectarExpresiones():
                                                   self.puntosNER[0:1, 0, 0:2])
         self.distvNBL3_NEL1 = self.__distVertical(self.puntosNBL[0:1, 2, 0:2],
                                                   self.puntosNEL[0:1, 0, 0:2])
+
 
         # AU2
         self.distvNBR1_NER4 = self.__distVertical(self.puntosNBR[0:1, 0, 0:2],
@@ -398,8 +400,8 @@ class detectarExpresiones():
         thr3 = 0.3
 
         # Max dist = dist entre puntos max para esa AU
-        maxdist_B3 = 7.5
-        maxdist_B2 = 7.5
+        maxdist_B3 = 5
+        maxdist_B2 = 5
 
         # # Ceja derecha
         if self.distvBR3_ER1 - self.distvNBR3_NER1 > thr3 * maxdist_B3:
@@ -436,6 +438,7 @@ class detectarExpresiones():
         compBL = 0.65 * compBL3 + 0.35 * compBL2
         # # Resultado
         compliance = 0.5 * compBR + 0.5 * compBL
+
         return compliance
 
     def __AU2(self):
@@ -443,12 +446,12 @@ class detectarExpresiones():
         compliance = None
 
         # Threshold = % del maximo para considerarse activo
-        thr1 = 0.3
-        thr2 = 0.2
+        thr1 = 0.2
+        thr2 = 0.3
 
         # Max dist = dist entre puntos max para esa AU
-        maxdist_B1 = 10  # Punto mas exterior de la ceja
-        maxdist_B2 = 10  # Punto central de la ceja
+        maxdist_B1 = 6  # Punto mas exterior de la ceja
+        maxdist_B2 = 7.5  # Punto central de la ceja
 
         # # Ceja derecha
         if self.distvBR1_ER4 - self.distvNBR1_NER4 > thr1 * maxdist_B1:
@@ -489,12 +492,12 @@ class detectarExpresiones():
 
     def __AU4(self):
         compliance = 0
-        """
+        
         thr = 0.2
 
-        maxdist_B1 = 100  # Punto exterior de la ceja
-        maxdist_B2 = 100  # Punto central de la ceja
-        maxdist_B3 = 100  # Punto interior de la ceja
+        maxdist_B1 = 2  # Punto exterior de la ceja
+        maxdist_B2 = 2  # Punto central de la ceja
+        maxdist_B3 = 2  # Punto interior de la ceja
 
         # Right
         if self.distvBR1_ER1 - self.distvNBR1_NER1 > thr * maxdist_B1:
@@ -547,7 +550,7 @@ class detectarExpresiones():
         #Resultado
         compliance = 0.5 * complianceR + 0.5 * complianceL
 
-        """
+        
         return compliance
 
     def __AU6(self):
@@ -638,8 +641,8 @@ class detectarExpresiones():
         #print("AU10: compMR2, compML2: " + str(compMR2) + ", " + str(compML2))
         #print("AU10: distMR2, distML2: " + str(self.distMR2_ER1 - self.distNMR2_NER1) + ", " + str(self.distML2_EL1 - self.distNML2_NEL1))
 
-        print("AU10: compMR1, compML1: " + str(compMR1) + ", " + str(compML1))
-        print("AU10: distMR1, distML1: " + str(self.distMR1_ER1 - self.distNMR1_NER1) + ", " + str(self.distML1_EL1 - self.distNML1_NEL1))
+        #print("AU10: compMR1, compML1: " + str(compMR1) + ", " + str(compML1))
+        #print("AU10: distMR1, distML1: " + str(self.distMR1_ER1 - self.distNMR1_NER1) + ", " + str(self.distML1_EL1 - self.distNML1_NEL1))
         
         return compliance
 

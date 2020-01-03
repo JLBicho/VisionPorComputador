@@ -29,6 +29,7 @@ def pruebasAU(data, au, detectExp):
                 print("AUs:" + str(aus[au]))
             else:
                 totalAUnoFeliz.append(aus[au])
+
         personaAnterior = persona
     totalAUfeliz = np.asarray(totalAUfeliz)
     totalAUnoFeliz = np.asarray(totalAUnoFeliz)
@@ -45,5 +46,5 @@ if __name__ == '__main__':
     marcador.loadModel("Modelos/lbfmodel.yaml")
     prueba = de.detectarExpresiones(detectorCara, marcador)
     data = ie.cargarDatabase()
-    print(pruebasAU(data, 10, prueba))
+    print(pruebasAU(data, 1, prueba))
     

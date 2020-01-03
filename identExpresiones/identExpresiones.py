@@ -89,7 +89,9 @@ if __name__ == "__main__":
     print("Felicidad total: " + str(prueba.comprobarFelicidad()))
     puntos = marcarCara(imaFeliz, detectorCara, marcador)
     ima2 = dibujarPuntos(imaFeliz, puntos)
-    mostrarImagen(ima2)
+    #mostrarImagen(ima2)
+    
+
     """
     prueba.puntosBocaNeutra
     prueba.puntosLabiosNeutra
