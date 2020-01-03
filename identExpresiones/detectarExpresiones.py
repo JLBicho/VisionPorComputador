@@ -492,7 +492,7 @@ class detectarExpresiones():
 
     def __AU4(self):
         compliance = 0
-        
+
         thr = 0.2
 
         maxdist_B1 = 2  # Punto exterior de la ceja
@@ -500,22 +500,22 @@ class detectarExpresiones():
         maxdist_B3 = 2  # Punto interior de la ceja
 
         # Right
-        if self.distvBR1_ER1 - self.distvNBR1_NER1 > thr * maxdist_B1:
-            compBR1 = (self.distvBR1_ER1 - self.distvNBR1_NER1) / maxdist_B1
+        if self.distvNBR1_NER1 - self.distvBR1_ER1 > thr * maxdist_B1:
+            compBR1 = (self.distvNBR1_NER1 - self.distvBR1_ER1) / maxdist_B1
         else:
             compBR1 = 0
         if compBR1 > 1:
             compBR1 = 1
 
-        if self.distBR2_ER1 - self.distNBR2_NER1 > thr * maxdist_B2:
-            compBR2 = (self.distBR2_ER1 - self.distNBR2_NER1) / maxdist_B2
+        if self.distNBR2_NER1 - self.distBR2_ER1 > thr * maxdist_B2:
+            compBR2 = (self.distNBR2_NER1 - self.distBR2_ER1) / maxdist_B2
         else:
             compBR2 = 0
         if compBR2 > 1:
             compBR2 = 1
 
-        if self.distBR3_ER1 - self.distNBR3_NER1 > thr * maxdist_B3:
-            compBR3 = (self.distBR3_ER1 - self.distNBR3_NER1) / maxdist_B3
+        if self.distNBR3_NER1 - self.distBR3_ER1 > thr * maxdist_B3:
+            compBR3 = (self.distNBR3_NER1 - self.distBR3_ER1) / maxdist_B3
         else:
             compBR3 = 0
         if compBR3 > 1:
@@ -524,22 +524,22 @@ class detectarExpresiones():
         complianceR = 0.4 * compBR1 + 0.3 * compBR2 + 0.3 * compBR3
 
         # Left
-        if self.distvBL1_EL1 - self.distvNBL1_NEL1 > thr * maxdist_B1:
-            compBL1 = (self.distvBL1_EL1 - self.distvNBL1_NEL1) / maxdist_B1
+        if self.distvNBL1_NEL1 - self.distvBL1_EL1 > thr * maxdist_B1:
+            compBL1 = (self.distvNBL1_NEL1 - self.distvBL1_EL1) / maxdist_B1
         else:
             compBL1 = 0
         if compBL1 > 1:
             compBL1 = 1
 
-        if self.distBL2_EL1 - self.distNBL2_NEL1 > thr * maxdist_B2:
-            compBL2 = (self.distBL2_EL1 - self.distNBL2_NEL1) / maxdist_B2
+        if self.distNBL2_NEL1 - self.distBL2_EL1 > thr * maxdist_B2:
+            compBL2 = (self.distNBL2_NEL1 - self.distBL2_EL1) / maxdist_B2
         else:
             compBL2 = 0
         if compBL2 > 1:
             compBL2 = 1
 
-        if self.distBL3_EL1 - self.distNBL3_NEL1 > thr * maxdist_B3:
-            compBL3 = (self.distBL3_EL1 - self.distNBL3_NEL1) / maxdist_B3
+        if self.distNBL3_NEL1 - self.distBL3_EL1 > thr * maxdist_B3:
+            compBL3 = (self.distNBL3_NEL1 - self.distBL3_EL1) / maxdist_B3
         else:
             compBL3 = 0
         if compBL3 > 1:
@@ -550,12 +550,12 @@ class detectarExpresiones():
         #Resultado
         compliance = 0.5 * complianceR + 0.5 * complianceL
 
-        
+
         return compliance
 
     def __AU6(self):
         compliance = 0
-        
+
         thr = 0.2
         maxdist_E3 = 1.5
         maxdist_E2E3 = 1.5
@@ -595,7 +595,7 @@ class detectarExpresiones():
 
         #Resultado
         compliance = 0.5 * complianceR + 0.5 * complianceL
-        
+
         return compliance
 
     def __AU10(self):
@@ -643,7 +643,7 @@ class detectarExpresiones():
 
         #print("AU10: compMR1, compML1: " + str(compMR1) + ", " + str(compML1))
         #print("AU10: distMR1, distML1: " + str(self.distMR1_ER1 - self.distNMR1_NER1) + ", " + str(self.distML1_EL1 - self.distNML1_NEL1))
-        
+
         return compliance
 
     def __AU12(self):
@@ -678,7 +678,7 @@ class detectarExpresiones():
 
         # print("AU12: compMR1, compML1: " + str(compMR1) + ", " + str(compML1))
         # print("AU12: distMR1, distML1: " + str(self.distMR1_ER1 - self.distNMR1_NER1) + ", " + str(self.distML1_EL1 - self.distNML1_NEL1))
-        
+
         compliance = 0.5 * compML1 + 0.5 * compMR1
         if compliance > 1:
             compliance = 1
@@ -716,7 +716,7 @@ class detectarExpresiones():
 
         # print("AU14: compMR1, compML1: " + str(compMR1) + ", " + str(compML1))
         # print("AU14: disthMR1, disthML1: " + str(self.disthMR1_ER1 - self.disthNMR1_NER1) + ", " + str(self.disthML1_EL1 - self.disthNML1_NEL1))
-        
+
         compliance = 0.5 * compML1 + 0.5 * compMR1
 
         if compliance > 1:
