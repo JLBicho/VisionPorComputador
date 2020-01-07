@@ -59,15 +59,21 @@
 
 <div id="contenido">
 	<div class="texto" align="justify">
-		<h2 id="titulo" align="left">Outputs</h2>
-		<i>Under construction</i></br>
-		Here we will feature images of the results of our algorithms.
+		<h2 id="titulo" align="left">How it works</h2>
+		Our algorithm is based on the detection of facial <b>Action Units</b> (AUs) to identify happiness, or the lack of it. Action Units describe feature movements of specific parts of the face, like raising the eyebrows or closing the eyes.<br><br>
+		But, how can this algorithm detect AUs based on movement if we work with still pictures? Easy: we use a picture where the person has a neutral expression and compare it to the happy (or not) picture. That way we are able to detect "movements" without requiring a video.<br><br>
+		After identifying the AUs present in the image, our trained classifier determines if the person in the image shows happiness or not, which is the goal of this project.<br><br>
+
+
 	</div>
 
 	<div class="texto" align="justify">
-		<h2 id="titulo" align="right">How it works</h2>
-		<i>Under construction</i></br>
-		Little explanation of the method we use.
+		<h2 id="titulo" align="right">Algorithm</h2>
+		So, in a deeper level, how does our program decide if a person is happy or not?<br><br>
+		The first step is detecting the face in the picture: the contour, the eyes, nose and lips, and translate it to a set of points we can identify as such. This step is done by a trained algorithm developed by another researchers. We just select the points that are interesting for us, which are defined in the following image:<br><br>
+		<img border="0" src="web_imagenes/fid_points.png" class="fotocentro"><br><br>
+		After identifying these points (called fiducial points) in both the target image and the neutral one, the algorithm normalizes the distances between points in relation to the distance between the inner eye points. With the normalized distances, the next step is comparing both pictures in order to find AUs. This step ends when each AU has a value from 0 to 1 depending on how intense that AU is in the analysed picture.<br><br>
+		The next and final step is running the classifier with the values of each AU.
 	</div>
 
 	<div class="texto" align="justify">
