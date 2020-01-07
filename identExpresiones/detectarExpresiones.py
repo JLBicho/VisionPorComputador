@@ -1,5 +1,6 @@
 import numpy as np
 import math
+import pickle
 
 
 class detectarExpresiones():
@@ -9,6 +10,9 @@ class detectarExpresiones():
         self.marcador = marcador
         self.imagenNeutra = imagenNeutra
         self.imagen = imagen
+        self.actionUnits = None
+        filename = 'ModelosFelicidad(80-20)/' + 'GradientBoostingClassifier [0.878].sav'
+        self.model = pickle.load(open(filename, 'rb'))
         if imagenNeutra is not None:
             self.__calcularPuntosNeutra()
         if imagen is not None:
@@ -726,18 +730,13 @@ class detectarExpresiones():
 
 # TODO: Introducir parámetros en la ponderación modificables para ajustar
 #       el modelo posteriormente.
-# Devuelve el valor de felicidad de 0 a 1 ponderado (mediante
-# paramFelicidad a partir del vector actionUnits
+# Devuelve el valor de felicidad de 0 o 1
+# a partir del vector actionUnits
     def comprobarFelicidad(self):
-        self.paramFelicidad = np.zeros(46)
-        self.paramFelicidad[1] = 1
-        self.paramFelicidad[2] = -1
-        self.paramFelicidad[4] = -1
-        self.paramFelicidad[6] = 1
-        self.paramFelicidad[10] = -1
-        self.paramFelicidad[12] = 1
-        self.paramFelicidad[14] = 1
-        feliz = np.dot(self.actionUnits, self.paramFelicidad)
-        # Feliz va de -3 a 4 se reajusta para que vaya de 0 a 1
-        self.felicidad = (feliz + 3) / 7
+        if self.actionUnits is None:
+            self.__comprobarAUs()
+        aus = np.zeros(7,)
+        for indice, valor in enumerate([1, 2, 4, 6, 10, 12, 14]):
+            aus[indice] = self.actionUnits[valor]
+        self.felicidad = self.model.predict(aus.reshape(1, -1))
         return self.felicidad
