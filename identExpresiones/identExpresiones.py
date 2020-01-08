@@ -105,7 +105,7 @@ def dibujarPuntos(imagen, puntos):
 
 if __name__ == "__main__":
     #MAIN DE PRUEBA
-    generarCsv()
+    #generarCsv()
     #print(images[0])
     
     #MAIN DE DANI
