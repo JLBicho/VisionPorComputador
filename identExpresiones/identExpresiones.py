@@ -32,6 +32,27 @@ def cargarDatabase():
                                     replace('-', '.') + '.tiff')
     return data
 
+# Cargar Database del directorio database_validacion
+def cargarDatabase_faces():
+    data = pd.read_csv('Database_validacion/database.csv', sep=';', index_col=0)
+
+    data['PATH'] = 0
+    # Añadir columna con el path
+    for indice in data.index:
+        data.loc[indice, 'PATH'] = ('faces/' + (data.loc[indice, 'arc']))
+    return data
+
+# Cargar Database del directorio database_nosotros
+def cargarDatabase_caretos():
+    data = pd.read_csv('Database_nosotros/database.csv', sep=';', index_col=0)
+
+    data['PATH'] = 0
+    # Añadir columna con el path
+    for indice in data.index:
+        data.loc[indice, 'PATH'] = ('caretos/' + (data.loc[indice, 'arc']))
+    return data
+
+
 
 # Devuelve la imágen a partir del dataframe
 def cargarImagen(datos):
