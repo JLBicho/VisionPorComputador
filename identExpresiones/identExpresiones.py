@@ -1,4 +1,9 @@
 import pandas as pd
+## Me da colision con ROS
+import sys
+sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages')
+##
+
 import cv2
 import numpy as np
 import os
@@ -18,7 +23,7 @@ def extraerImagenes():
 def generarCsv():
     df=[]
     index = 1
-    path = 'Database_validacion/faces'
+    path = 'Database_nosotros/caretos'
     # Store the image file names in a list as long as they are jpgs
     images = [f for f in os.listdir(path) if os.path.splitext(f)[-1] == '.jpg']
     for i in images: 
@@ -28,7 +33,7 @@ def generarCsv():
         index = index + 1
     df = np.asarray(df)    
     df = pd.DataFrame(df,columns=['per','emo','arc'])
-    df.to_csv(r'Database_validacion/basedatos.csv')
+    df.to_csv(r'Database_nosotros/basedatos.csv')
     
 # Cargar Database del directorio database
 def cargarDatabase():
@@ -48,22 +53,22 @@ def cargarDatabase():
 
 # Cargar Database del directorio database_validacion
 def cargarDatabase_faces():
-    data = pd.read_csv('Database_validacion/database.csv', sep=';', index_col=0)
-
+    data = pd.read_csv('Database_validacion/basedatos.csv', sep=';', index_col=0)
+    extraerImagenes()
     data['PATH'] = 0
     # Añadir columna con el path
     for indice in data.index:
-        data.loc[indice, 'PATH'] = ('faces/' + (data.loc[indice, 'arc']))
+        data.loc[indice, 'PATH'] = ('Database_validacion/faces/' + (data.loc[indice, 'arc']))
     return data
 
 # Cargar Database del directorio database_nosotros
 def cargarDatabase_caretos():
     data = pd.read_csv('Database_nosotros/database.csv', sep=';', index_col=0)
-
+    extraerImagenes()
     data['PATH'] = 0
     # Añadir columna con el path
     for indice in data.index:
-        data.loc[indice, 'PATH'] = ('caretos/' + (data.loc[indice, 'arc']))
+        data.loc[indice, 'PATH'] = ('Database_nosotros/caretos/' + (data.loc[indice, 'arc']))
     return data
 
 
