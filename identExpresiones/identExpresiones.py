@@ -1,6 +1,6 @@
 import pandas as pd
 import cv2
-# import numpy as np
+import numpy as np
 import os
 from zipfile import ZipFile
 import SeleccionarPuntos as sp
@@ -15,7 +15,21 @@ def extraerImagenes():
         with ZipFile('Database/jaffedbase.zip', 'r') as zip:
             zip.extractall('Images')
 
-
+def generarCsv():
+    df=[]
+    index = 1
+    path = 'Database_validacion/faces'
+    # Store the image file names in a list as long as they are jpgs
+    images = [f for f in os.listdir(path) if os.path.splitext(f)[-1] == '.jpg']
+    for i in images: 
+        #for j, caracter in enumerate(i):
+            #df.append(caracter)
+        df.append([i[0], i[1], i])
+        index = index + 1
+    df = np.asarray(df)    
+    df = pd.DataFrame(df,columns=['per','emo','arc'])
+    df.to_csv(r'Database_validacion/basedatos.csv')
+    
 # Cargar Database del directorio database
 def cargarDatabase():
     data = pd.read_csv('Database/database.csv', sep=';', index_col=0)
@@ -64,6 +78,12 @@ def dibujarPuntos(imagen, puntos):
 
 
 if __name__ == "__main__":
+    #MAIN DE PRUEBA
+    generarCsv()
+    #print(images[0])
+    
+    #MAIN DE DANI
+    """
     data = cargarDatabase()
     imaNeutra = cargarImagen(data.loc[1])
     imaFeliz = cargarImagen(data.loc[4])
@@ -75,11 +95,13 @@ if __name__ == "__main__":
     marcador = cv2.face.createFacemarkLBF()
     marcador.loadModel("Modelos/lbfmodel.yaml")
     """
+    """
     puntos = marcarCara(imaNeutra, detectorCara, marcador)
     ima2 = dibujarPuntos(imaNeutra, puntos)
     mostrarImagen(ima2)
     mostrarImagen(dibujarPuntos(imaNeutra, sp.selPuntosBoca((puntos))))
     mostrarImagen(dibujarPuntos(imaNeutra, sp.selPuntosLabios((puntos))))
+    """
     """
     prueba = detectarExpresiones(detectorCara, marcador, imaNeutra, imaFeliz)
     aus = prueba.comprobarAUs()
@@ -91,7 +113,7 @@ if __name__ == "__main__":
     ima2 = dibujarPuntos(imaFeliz, puntos)
     #mostrarImagen(ima2)
     
-
+    """
     """
     prueba.puntosBocaNeutra
     prueba.puntosLabiosNeutra
