@@ -58,12 +58,13 @@ def cargarDatabase_faces():
     data['PATH'] = 0
     # Añadir columna con el path
     for indice in data.index:
-        data.loc[indice, 'PATH'] = ('Database_validacion/faces/' + (data.loc[indice, 'arc']))
+        data.loc[indice, 'PATH'] = ('Database_validacion/faces/'
+                                    + str((data.loc[indice, 'arc'])))
     return data
 
 # Cargar Database del directorio database_nosotros
 def cargarDatabase_caretos():
-    data = pd.read_csv('Database_nosotros/database.csv', sep=';', index_col=0)
+    data = pd.read_csv('Database_nosotros/basedatos.csv', sep=';', index_col=0)
     extraerImagenes()
     data['PATH'] = 0
     # Añadir columna con el path
