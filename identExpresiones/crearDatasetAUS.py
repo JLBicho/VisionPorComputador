@@ -53,6 +53,7 @@ def dataFrameAUs_validacion(data,au,detectExp):
     datos = np.asarray(datos)
     datos = pd.DataFrame(datos, columns=['Feliz', 'au1', 'au2', 'au4', 'au6',
                                          'au10', 'au12', 'au14'])
+    return datos
 
 
 
@@ -68,13 +69,14 @@ if __name__ == '__main__':
     
     #Depende de que database uses
     #data = ie.cargarDatabase()
-    data = ie.cargarDatabase_faces()
-    #data = ie.cargarDatabase_caretos()
+    #data = ie.cargarDatabase_faces()
+    data = ie.cargarDatabase_caretos()
 
-    datos = dataFrameAUs(data, 1, prueba)
+    #datos = dataFrameAUs_validacion(data, 1, prueba)
+    datos = dataFrameAUs_validacion(data, 1, prueba)
 
     #datos.to_csv("Database/dataBaseAUs.csv", index=False)
-    datos.to_csv("Database_validacion/dataBaseAUs.csv", index=False)
-    #datos.to_csv("Database_nosotros/dataBaseAUs.csv", index=False)
+    #datos.to_csv("Database_validacion/dataBaseAUs.csv", index=False)
+    datos.to_csv("Database_nosotros/dataBaseAUs.csv", index=False)
 
 

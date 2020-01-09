@@ -34,6 +34,20 @@ def generarCsv():
     df = np.asarray(df)    
     df = pd.DataFrame(df,columns=['per','emo','arc'])
     df.to_csv(r'Database_nosotros/basedatos.csv')
+
+#Lee los modelos de las distintas carpetas y los mete en una lista   
+def leerModelos():
+    lista = []
+    path = 'ModelosFelicidad(40-60)'
+    modelos = [f for f in os.listdir(path) if os.path.splitext(f)[-1] == '.sav']
+    lista.append(modelos)
+    path = 'ModelosFelicidad(60-40)'
+    modelos = [f for f in os.listdir(path) if os.path.splitext(f)[-1] == '.sav']
+    lista.append(modelos)
+    path = 'ModelosFelicidad(80-20)'
+    modelos = [f for f in os.listdir(path) if os.path.splitext(f)[-1] == '.sav']
+    lista.append(modelos)
+    return lista
     
 # Cargar Database del directorio database
 def cargarDatabase():
@@ -53,19 +67,20 @@ def cargarDatabase():
 
 # Cargar Database del directorio database_validacion
 def cargarDatabase_faces():
-    data = pd.read_csv('Database_validacion/basedatos.csv', sep=';', index_col=0)
-    extraerImagenes()
+    data = pd.read_csv('Database_validacion/basedatos.csv', index_col=False)
+    
     data['PATH'] = 0
     # Añadir columna con el path
     for indice in data.index:
         data.loc[indice, 'PATH'] = ('Database_validacion/faces/'
-                                    + str((data.loc[indice, 'arc'])))
+                                    + (data.loc[indice, 'arc']))
+
     return data
 
 # Cargar Database del directorio database_nosotros
 def cargarDatabase_caretos():
-    data = pd.read_csv('Database_nosotros/basedatos.csv', sep=';', index_col=0)
-    extraerImagenes()
+    data = pd.read_csv('Database_nosotros/basedatos.csv', index_col=False)
+
     data['PATH'] = 0
     # Añadir columna con el path
     for indice in data.index:
@@ -106,8 +121,8 @@ def dibujarPuntos(imagen, puntos):
 
 if __name__ == "__main__":
     #MAIN DE PRUEBA
-    #generarCsv()
-    #print(images[0])
+    
+    #cargarDatabase_faces()
     
     #MAIN DE DANI
     """
