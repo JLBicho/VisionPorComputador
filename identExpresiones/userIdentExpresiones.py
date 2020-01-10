@@ -10,7 +10,7 @@ def introducirImagenNeutra():
     try:
         ima = cargarImagenPath(path)
         detecExp.setImagenNeutra(ima)
-        print("\nimagen cargada correctamente\n")
+        print("\nImagen cargada correctamente\n")
     except:
         print("Archivo no reconocido")
 
@@ -20,7 +20,7 @@ def introducirImagen():
     try:
         ima = cargarImagenPath(path)
         detecExp.setImagen(ima)
-        print("\nimagen cargada correctamente\n")
+        print("\nImagen cargada correctamente\n")
     except:
         print("Archivo no reconocido")
 
