@@ -16,11 +16,11 @@ import os
 
 if __name__ == "__main__":
     # Cargamos el modelo y el clasificador
-    path = 'ModelosFelicidad(80-20)/'
+    path = 'ModelosFelicidad(60-40)/'
     classifiers = os.listdir(path)
     # Para cada clasificador encontrado en el directorio
     for classifier in classifiers:
-        filename = 'ModelosFelicidad(80-20)/' + classifier
+        filename = path + classifier
         loaded_model = pickle.load(open(filename, 'rb'))
 
         # Carga los datos de las AU
