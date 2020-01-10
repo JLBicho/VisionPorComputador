@@ -75,7 +75,7 @@ def textMenu():
     print("\t2) Introducir imagen para comprobar")
     print("\t3) Mostrar valor de los action units")
     print("\t4) Comprobar felicidad")
-    print("\t5) Mostrar puntos detectados en las imagenes")
+    print("\t5) Mostrar puntos detectados en las imágenes")
     print("\t6) Salir")
 
 
@@ -97,5 +97,4 @@ if __name__ == "__main__":
     while(1):
         textMenu()
         opcion = input()
-        opcion
         menu(opcion)
