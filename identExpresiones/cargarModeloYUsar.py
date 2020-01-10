@@ -16,7 +16,7 @@ import os
 
 if __name__ == "__main__":
     # Cargamos el modelo y el clasificador
-    path = 'ModelosFelicidad(60-40)/'
+    path = 'ModelosFelicidad(40-60)/'
     classifiers = os.listdir(path)
     # Para cada clasificador encontrado en el directorio
     for classifier in classifiers:
