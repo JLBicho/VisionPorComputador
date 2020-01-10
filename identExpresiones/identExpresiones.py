@@ -1,9 +1,4 @@
 import pandas as pd
-## Me da colision con ROS
-import sys
-sys.path.remove('/opt/ros/kinetic/lib/python2.7/dist-packages')
-##
-
 import cv2
 import numpy as np
 import os
@@ -26,16 +21,16 @@ def generarCsv():
     path = 'Database_nosotros/caretos'
     # Store the image file names in a list as long as they are jpgs
     images = [f for f in os.listdir(path) if os.path.splitext(f)[-1] == '.jpg']
-    for i in images: 
+    for i in images:
         #for j, caracter in enumerate(i):
             #df.append(caracter)
         df.append([i[0], i[1], i])
         index = index + 1
-    df = np.asarray(df)    
+    df = np.asarray(df)
     df = pd.DataFrame(df,columns=['per','emo','arc'])
     df.to_csv(r'Database_nosotros/basedatos.csv')
 
-#Lee los modelos de las distintas carpetas y los mete en una lista   
+#Lee los modelos de las distintas carpetas y los mete en una lista
 def leerModelos():
     lista = []
     path = 'ModelosFelicidad(40-60)'
@@ -48,7 +43,7 @@ def leerModelos():
     modelos = [f for f in os.listdir(path) if os.path.splitext(f)[-1] == '.sav']
     lista.append(modelos)
     return lista
-    
+
 # Cargar Database del directorio database
 def cargarDatabase():
     data = pd.read_csv('Database/database.csv', sep=';', index_col=0)
@@ -68,7 +63,7 @@ def cargarDatabase():
 # Cargar Database del directorio database_validacion
 def cargarDatabase_faces():
     data = pd.read_csv('Database_validacion/basedatos.csv', index_col=False)
-    
+
     data['PATH'] = 0
     # Añadir columna con el path
     for indice in data.index:
@@ -121,9 +116,9 @@ def dibujarPuntos(imagen, puntos):
 
 if __name__ == "__main__":
     #MAIN DE PRUEBA
-    
+
     #cargarDatabase_faces()
-    
+
     #MAIN DE DANI
     """
     data = cargarDatabase()
@@ -154,7 +149,7 @@ if __name__ == "__main__":
     puntos = marcarCara(imaFeliz, detectorCara, marcador)
     ima2 = dibujarPuntos(imaFeliz, puntos)
     #mostrarImagen(ima2)
-    
+
     """
     """
     prueba.puntosBocaNeutra
