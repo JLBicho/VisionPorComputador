@@ -14,35 +14,29 @@ import pickle
 import cv2
 import os
 
-# Devuelve la imágen a partir del dataframe
-def cargarImagen(datos):
-    ima = cv2.imread(datos)
-    imaBW = cv2.cvtColor(ima, cv2.COLOR_BGR2GRAY)
-    return imaBW
-
-def marcarCara(imagen, detector, marcador):
-    caras = detector.detectMultiScale(imagen)
-    retval, puntos = marcador.fit(imagen, caras)
-    return puntos[0]
-
 if __name__ == "__main__":
+    # Cargamos el modelo y el clasificador
     path = 'ModelosFelicidad(80-20)/'
     classifiers = os.listdir(path)
+    # Para cada clasificador encontrado en el directorio
     for classifier in classifiers:
         filename = 'ModelosFelicidad(80-20)/' + classifier
         loaded_model = pickle.load(open(filename, 'rb'))
 
+        # Carga los datos de las AU
         datos = pd.read_csv('Database_nosotros/dataBaseAUs.csv')
         X = datos.iloc[:, 1:]
         y = datos.Feliz
 
+        # Guarda en un array los datos de los AU
         test = np.array(X.iloc[:,:])
-        
         test.reshape(-1,1)
+        # Realiza una prediccion
         result = loaded_model.predict(test)
         good = 0;
         bad = 0;
         total = 0;
+        # Compara el resultado con la realidad
         for i in range(0,len(result)):
             if result[i] == y[i]:
                 good = good + 1
