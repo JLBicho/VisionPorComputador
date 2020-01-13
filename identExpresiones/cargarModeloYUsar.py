@@ -24,10 +24,9 @@ if __name__ == "__main__":
         loaded_model = pickle.load(open(filename, 'rb'))
 
         # Carga los datos de las AU
-        datos = pd.read_csv('Database_nosotros/dataBaseAUs.csv')
+        datos = pd.read_csv('Database/dataBaseAUs.csv')
         X = datos.iloc[:, 1:]
         y = datos.Feliz
-
         # Guarda en un array los datos de los AU
         test = np.array(X.iloc[:,:])
         test.reshape(-1,1)
